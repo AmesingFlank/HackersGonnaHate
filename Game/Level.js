@@ -11,7 +11,7 @@ const getGameOfLevel = (level) => {
         let game = new Game(new Vec2(3,3), new Vec2(3,0));
         game.bots.push(new Bot(new Vec2(0,0), new Vec2(0,1),5));
         game.hackers.push(new Hacker(new Vec2(2,1 ), new Vec2(-1, 0)))
-        game.hackers.push(new Hacker(new Vec2(1,3 ) new Vec2(1, 0)))
+        game.hackers.push(new Hacker(new Vec2(1,3 ), new Vec2(1, 0)))
         return game
     }
     if (level === 2) {
