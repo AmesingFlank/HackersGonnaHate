@@ -109,7 +109,7 @@ export class Game{
     checkKilling(){
         for (let hacker of this.hackers) {
             for (let bot of this.bots) {
-                if(bot.dead || bot.atDestination){
+                if(bot.dead || bot.atDestination || bot.isInvisible){
                     continue;
                 }
                 if (hacker.direction.x === -1 && hacker.direction.y === 0 && hacker.position.x === bot.position.x && hacker.position.y >= bot.position.y) {

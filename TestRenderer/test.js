@@ -12,7 +12,7 @@ let shader;
 let frameID = 0;
 
 
-let game = getGameOfLevel(0)
+let game = getGameOfLevel(2)
 
 /*
 let game = new Game(new Vec2(5,5), new Vec2(1,5));
