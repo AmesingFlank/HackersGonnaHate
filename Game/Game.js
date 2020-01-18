@@ -58,8 +58,14 @@ export class Game{
     step(){
         let state = this;
         for(let i = 0;i<this.bots.length;++i){
-            let move = this.bots.nextMove(state)
+            let move = this.bots[i].nextMove(state)
             this.applyBotMove(this.bots[i],move)
+
+        }
+
+        for(let i = 0;i<this.hackers.length;++i){
+            let move = this.hackers[i].nextMove(state)
+            this.applyBotMove(this.hackers[i],move)
 
         }
     }
