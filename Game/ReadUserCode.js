@@ -1,0 +1,3 @@
+function readUserCode(bot, code){
+    
+}
