@@ -115,16 +115,8 @@ export class Game{
                 if(bot.dead || bot.atDestination){
                     continue;
                 }
-                if (hacker.direction.x === -1 && hacker.direction.y === 0 && hacker.position.x === bot.position.x && hacker.position.y >= bot.position.y) {
-                    bot.dead = true
-                }
-                if (hacker.direction.x === 1 && hacker.direction.y === 0 && hacker.position.x === bot.position.x && hacker.position.y <= bot.position.y) {
-                    bot.dead = true
-                }
-                if (hacker.direction.x === 0 && hacker.direction.y === 1 && hacker.position.y === bot.position.y && hacker.position.x <= bot.position.x) {
-                    bot.dead = true
-                }
-                if (hacker.direction.x === 0 && hacker.direction.y === -1 && hacker.position.y === bot.position.y && hacker.position.x >= bot.position.x) {
+                // Kill bot if the distance between hacker and bot <= 1
+                if (Math.max(Math.abs(hacker.position.x - bot.position.x), Math.abs(hacker.position.y - bot.position.y)) <= 1) {
                     bot.dead = true
                 }
                 if(bot.dead){
