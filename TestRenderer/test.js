@@ -12,7 +12,7 @@ let frameID = 0;
 
 
 
-let game = new Game(new Vec2(5,5));
+let game = new Game(new Vec2(5,5), new Vec2(1,5));
 game.bots.push(new Bot(new Vec2(1,1), new Vec2(0,1),5));
 game.hackers.push(new Hacker(new Vec2(3,3),new Vec2(0,1)));
 
@@ -23,9 +23,10 @@ let textBox = document.getElementById("myCodeArea");
 let applyBtn = document.getElementById('apply');
 applyBtn.onclick = ()=>{
     gameStarted = true
-    
-    let code = textBox.innerHTML;
-    for(let i = 0;i<game.bots.length();++i){
+
+    let code = textBox.value;
+    console.log("reading \n"+code)
+    for(let i = 0;i<game.bots.length;++i){
         readUserCode(game.bots[i],code)
     }
 }
@@ -224,7 +225,8 @@ const renderFrame = ()=>{
 
 let onNewFrame = ()=>{
     
-    frameID ++ ;
+    if(gameStarted)
+        frameID ++ ;
     if(frameID===60){
         frameID = 0;
         game.step();

@@ -56,13 +56,17 @@ export class Game{
         this.hackers = []
         this.mapSize = mapSize
         this.destination = destination
+        this.arrivedBots = []
     }
     step(){
         let state = this;
         for(let i = 0;i<this.bots.length;++i){
             let move = this.bots[i].nextMove(state)
             this.applyBotMove(this.bots[i],move)
-
+            if(this.bots[i].position.equals(this.destination)){
+                this.bots[i].atDestination = true;
+                this.arrivedBots.push(this.bots[i])
+            }
         }
 
         for(let i = 0;i<this.hackers.length;++i){
