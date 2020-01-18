@@ -1,4 +1,7 @@
 "use strict";
+import {Game,Bot,Hacker} from '../Game/Game.js'
+import {Vec2} from '../Game/Vec2.js'
+import {Background} from './background.js'
 
 // This is the main script. The entry point is the onPageLoaded function, as specified in the body tag of index.html
 // It sets the scene and begins the game loop which updates and renders everything.
@@ -36,6 +39,8 @@ function onPageLoaded() {
     startGameLoop();  
 }
 
+window.onPageLoaded = onPageLoaded
+
 //canvas is an HTML block element; it's the canvas that we render on
 function initialiseCanvas(canvas_name) {
     var canvas = document.getElementById(canvas_name);
@@ -52,8 +57,8 @@ function initialiseBackground(canvas) {
 function initialiseGameObject() {
 
     gameObject = new Game(new Vec2(5,5), new Vec2(1,5));
-    game.bots.push(new Bot(new Vec2(1,1), new Vec2(0,1),5));
-    game.hackers.push(new Hacker(new Vec2(3,3),new Vec2(0,1)));
+    gameObject.bots.push(new Bot(new Vec2(1,1), new Vec2(0,1),5));
+    gameObject.hackers.push(new Hacker(new Vec2(3,3),new Vec2(0,1)));
 
 }
 

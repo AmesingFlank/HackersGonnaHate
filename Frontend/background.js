@@ -74,3 +74,5 @@ class Background {
     }
 
 }
+
+export {Background}
