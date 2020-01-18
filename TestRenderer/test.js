@@ -16,11 +16,19 @@ let game = new Game(new Vec2(5,5), new Vec2(1,5));
 game.bots.push(new Bot(new Vec2(1,1), new Vec2(0,1),5));
 game.hackers.push(new Hacker(new Vec2(3,3),new Vec2(0,1)));
 
+game.hackers.push(new Hacker(new Vec2(1,0),new Vec2(0,1)));
+game.hackers.push(new Hacker(new Vec2(0,1),new Vec2(0,1)));
+game.hackers.push(new Hacker(new Vec2(1,3),new Vec2(0,1)));
+game.hackers.push(new Hacker(new Vec2(2,1),new Vec2(0,1)));
+
+
 
 let gameStarted = false
 
-let textBox = document.getElementById("myCodeArea");
+let textBox = document.getElementById("codeInput");
 let applyBtn = document.getElementById('apply');
+let gameResultText = document.getElementById("gameResultText")
+
 applyBtn.onclick = ()=>{
     gameStarted = true
 
@@ -72,6 +80,9 @@ const initRenderer = ()=>{
      precision mediump float;
      
      uniform vec2 mapSize;
+
+     uniform vec2 destination;
+
      
      varying vec2 texCoords;
      
@@ -137,6 +148,10 @@ const initRenderer = ()=>{
              }
          }
      
+        vec2 destinationPos = destination  * cellSize;
+        if(length (coords-destinationPos) < 0.4 * cellSize.x){
+            gl_FragColor = vec4(1,1,1,1);
+        }
      
      }
         `;
@@ -179,6 +194,12 @@ const renderFrame = ()=>{
         console.log("map size loc wrong")
     }
     gl.uniform2fv(mapSizeLocation,[game.mapSize.x,game.mapSize.y]);
+
+    let destinationLocation = gl.getUniformLocation(shader.program,"destination");
+    if(destinationLocation === -1){
+        console.log("destination loc wrong")
+    }
+    gl.uniform2fv(destinationLocation,[game.destination.x,game.destination.y]);
 
 
     let botCountLocation = gl.getUniformLocation(shader.program,"botCount");
@@ -230,11 +251,20 @@ let onNewFrame = ()=>{
     if(frameID===60){
         frameID = 0;
         game.step();
+        
     }
         
     renderFrame();
     
     requestAnimationFrame(onNewFrame)
+    if(game.killedBots.length == game.bots.length){
+        gameResultText.innerHTML = "you Lost :(("
+        gameStarted = false
+    }
+    if(game.arrivedBots.length == game.bots.length){
+        gameResultText.innerHTML = "you won ! "
+        gameStarted = false
+    }
 }
 
 
