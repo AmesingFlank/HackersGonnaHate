@@ -24,8 +24,27 @@ class Hacker{
     constructor(position, direction){
         this.position = position
         this.direction = direction
-        this.nextMove = (state) =>{
-            return new Action(new Vec2(1,0),false)
+        this.nextMove = (state) => {
+            let weights = [0.25, 0.25, 0.25, 0.25] // possibilities of next move in the direction of E, N, W, S respectively
+            let random = Math.random()
+            let percentile = 0
+            for (let i = 0; i < weights.length; i++) {
+                percentile += weights[i];
+                if (random <= percentile) {
+                    if (i === 0) {
+                        return new Action(new Vec2(1,0), false)
+                    }
+                    if (i === 1) {
+                        return new Action(new Vec2(0,1), false)
+                    }
+                    if (i === 2) {
+                        return new Action(new Vec2(-1,0), false)
+                    }
+                    if (i === 3) {
+                        return new Action(new Vec2(0,-1), false)
+                    }
+                }
+            }
         }
     }
 }
@@ -60,20 +79,19 @@ class Game{
         hacker.direction = move.direction
     }
     checkKilling(){
-        let killedBots = []
         for (let hacker in this.hackers) {
             for (let bot in this.bots) {
                 if (hacker.direction.x === -1 && hacker.direction.y === 0 && hacker.position.x === bot.position.x && hacker.position.y >= bot.position.y) {
-                    killedBots.push(bot)
+                    bot.dead = true
                 }
                 if (hacker.direction.x === 1 && hacker.direction.y === 0 && hacker.position.x === bot.position.x && hacker.position.y <= bot.position.y) {
-                    killedBots.push(bot)
+                    bot.dead = true
                 }
                 if (hacker.direction.x === 0 && hacker.direction.y === 1 && hacker.position.y === bot.position.y && hacker.position.x <= bot.position.x) {
-                    killedBots.push(bot)
+                    bot.dead = true
                 }
                 if (hacker.direction.x === 0 && hacker.direction.y === -1 && hacker.position.y === bot.position.y && hacker.position.x >= bot.position.x) {
-                    killedBots.push(bot)
+                    bot.dead = true
                 }
             }
         }
