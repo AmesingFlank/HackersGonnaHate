@@ -16,8 +16,13 @@ export class Bot{
         this.dead = false;
         this.atDestination = false
         this.nextMove = (state) =>{
+        
 
         }
+    }
+
+    render(context) {
+        this.printer.render(context, this.position, this.direction)
     }
 }
 
@@ -47,6 +52,14 @@ export class Hacker{
                 }
             }
         }
+        
+    }
+
+    render(context) {
+        if(!this.printer){
+            this.printer = new Sprite(document.getElementById("Hacker"));
+        }
+        this.printer.render(context, this.position, this.direction)
     }
 }
 
@@ -56,7 +69,9 @@ export class Game{
         this.hackers = []
         this.mapSize = mapSize
         this.destination = destination
+
         this.arrivedBots = []
+        this.killedBots = []
     }
     step(){
         let state = this;
@@ -74,6 +89,7 @@ export class Game{
             this.applyBotMove(this.hackers[i],move)
 
         }
+        this.checkKilling();
     }
     applyBotMove(bot,move){
         bot.position.x += move.direction.x;
@@ -91,8 +107,11 @@ export class Game{
         hacker.direction = move.direction
     }
     checkKilling(){
-        for (let hacker in this.hackers) {
-            for (let bot in this.bots) {
+        for (let hacker of this.hackers) {
+            for (let bot of this.bots) {
+                if(bot.dead || bot.atDestination){
+                    continue;
+                }
                 if (hacker.direction.x === -1 && hacker.direction.y === 0 && hacker.position.x === bot.position.x && hacker.position.y >= bot.position.y) {
                     bot.dead = true
                 }
@@ -104,6 +123,9 @@ export class Game{
                 }
                 if (hacker.direction.x === 0 && hacker.direction.y === -1 && hacker.position.y === bot.position.y && hacker.position.x >= bot.position.x) {
                     bot.dead = true
+                }
+                if(bot.dead){
+                    this.killedBots.push(bot)
                 }
             }
         }

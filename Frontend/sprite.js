@@ -35,8 +35,21 @@ class sprite {
     }
 
 
-    render(context) {
+    render(context, position, direction) {
         //console.log("sprite render");
-        context.drawImage(this._image, this._owner.x, this._owner.y);
+        let rotate;
+        if(direction.x == 0) {
+            if(direction.y > 0){
+                rotate = Math.PI / 2;
+            }
+            else { rotate = - Math.PI / 2};
+        }
+        else{
+            if(direction.x > 0){
+                roate = 0;
+            }
+            else {rotate = Math.PI};
+        }
+        context.drawImage(this._image, position.x, position.y, 1, rotate);
     }
 }
