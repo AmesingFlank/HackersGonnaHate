@@ -50,10 +50,11 @@ export class Hacker{
 }
 
 export class Game{
-    constructor(mapSize){
+    constructor(mapSize,destination){
         this.bots = []
         this.hackers = []
         this.mapSize = mapSize
+        this.destination = destination
     }
     step(){
         let state = this;
