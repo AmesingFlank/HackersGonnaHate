@@ -16,7 +16,7 @@ export class Bot{
         this.dead = false;
         this.atDestination = false
         this.nextMove = (state) =>{
-        this.printer = new Sprite(document.getElementById("Hacker"));
+        
 
         }
     }
