@@ -74,16 +74,16 @@ export class Game{
     applyBotMove(bot,move){
         bot.position.x += move.direction.x;
         bot.position.y += move.direction.y;
-        bot.position.x = Math.max(0,Math.min(bot.position.x,this.mapSize.x))
-        bot.position.y = Math.max(0,Math.min(bot.position.y,this.mapSize.y))
+        bot.position.x = Math.max(0,Math.min(bot.position.x,this.mapSize.x-1))
+        bot.position.y = Math.max(0,Math.min(bot.position.y,this.mapSize.y-1))
         bot.direction = move.direction
         bot.isInvisible = move.activateInvisibility
     }
     applyHackerMove(hacker,move){
         hacker.position.x += move.direction.x;
         hacker.position.y += move.direction.y;
-        hacker.position.x = Math.max(0,Math.min(hacker.position.x,this.mapSize.x))
-        hacker.position.y = Math.max(0,Math.min(hacker.position.y,this.mapSize.y))
+        hacker.position.x = Math.max(0,Math.min(hacker.position.x,this.mapSize.x-1))
+        hacker.position.y = Math.max(0,Math.min(hacker.position.y,this.mapSize.y-1))
         hacker.direction = move.direction
     }
     checkKilling(){

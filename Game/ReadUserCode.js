@@ -5,3 +5,5 @@ function readUserCode(bot, code){
     eval(newCode)
     bot.nextMove = temp.nextMove
 }
+
+export {readUserCode}

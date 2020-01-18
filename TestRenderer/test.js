@@ -1,6 +1,7 @@
 import {Game,Bot,Hacker,Action} from "../Game/Game.js"
 import {Vec2} from "../Game/Vec2.js"
 import {ShaderProgram} from "./ShaderProgram.js"
+import {readUserCode} from "../Game/ReadUserCode.js"
 
 let canvas = document.getElementById('my_Canvas');
 let gl = canvas.getContext('webgl');
@@ -14,25 +15,28 @@ let frameID = 0;
 let game = new Game(new Vec2(5,5));
 game.bots.push(new Bot(new Vec2(1,1), new Vec2(0,1),5));
 game.hackers.push(new Hacker(new Vec2(3,3),new Vec2(0,1)));
-game.bots[0].nextMove = (state)=>{
-    return new Action(new Vec2(0,1),false)
-}
 
 
-
+let gameStarted = false
 
 let textBox = document.getElementById("myCodeArea");
 let applyBtn = document.getElementById('apply');
 applyBtn.onclick = ()=>{
-    console.log(textBox.innerHTML)
+    gameStarted = true
+    
+    let code = textBox.innerHTML;
+    for(let i = 0;i<game.bots.length();++i){
+        readUserCode(game.bots[i],code)
+    }
 }
 
 const initRenderer = ()=>{
+    
     let vertices = [
-        -0.5,0.5,0.0,
-        -0.5,-0.5,0.0,
-        0.5,-0.5,0.0,
-        0.5,0.5,0.0 
+        -1.0,1.0,0.0,
+        -1.0,-1.0,0.0,
+        1.0,-1.0,0.0,
+        1.0,1.0,0.0 
      ];
      
      let indices = [3,2,1,3,1,0];
@@ -59,7 +63,7 @@ const initRenderer = ()=>{
      varying mediump vec2 texCoords;
      void main(void) {
          gl_Position = vec4(coordinates, 1.0);
-         texCoords = coordinates.xy + vec2(0.5);
+         texCoords = (coordinates.xy + vec2(1.0))/2.0;
      }
      `;
      let fragCode =
