@@ -48,7 +48,7 @@ class Background {
     }
 
     render(context) {
-        context.fillStyle = "#000000";
+        context.fillStyle = "#333333";
         context.fillRect(0, 0, this._width, this._height);
         this.drawGrid(context);
     }

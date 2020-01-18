@@ -1,4 +1,3 @@
-"use strict";
 
 
 // Components can be added to Entity objects to give them special behaviours.
@@ -7,7 +6,7 @@
 
 var next_component_id = 0;
 
-class sprite {
+class Sprite{
     constructor(image) {
         // Give each component a unique identifier as it's created. This can help with debugging.
         this._id = next_component_id++;
@@ -46,10 +45,12 @@ class sprite {
         }
         else{
             if(direction.x > 0){
-                roate = 0;
+                rotate = 0;
             }
             else {rotate = Math.PI};
         }
         context.drawImage(this._image, position.x, position.y, 1, rotate);
     }
 }
+
+export {Sprite}

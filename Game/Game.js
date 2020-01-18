@@ -1,4 +1,5 @@
 import {Vec2} from './Vec2.js'
+import {Sprite} from '../Frontend/sprite.js'
 
 export class Action{
     constructor(direction, activateInvisibility){
@@ -21,6 +22,9 @@ export class Bot{
     }
 
     render(context) {
+        if(!this.printer){
+            this.printer = new Sprite(document.getElementById("Bot"));
+        }
         this.printer.render(context, this.position, this.direction)
     }
 }
@@ -111,16 +115,8 @@ export class Game{
                 if(bot.dead || bot.atDestination || bot.isInvisible){
                     continue;
                 }
-                if (hacker.direction.x === -1 && hacker.direction.y === 0 && hacker.position.x === bot.position.x && hacker.position.y >= bot.position.y) {
-                    bot.dead = true
-                }
-                if (hacker.direction.x === 1 && hacker.direction.y === 0 && hacker.position.x === bot.position.x && hacker.position.y <= bot.position.y) {
-                    bot.dead = true
-                }
-                if (hacker.direction.x === 0 && hacker.direction.y === 1 && hacker.position.y === bot.position.y && hacker.position.x <= bot.position.x) {
-                    bot.dead = true
-                }
-                if (hacker.direction.x === 0 && hacker.direction.y === -1 && hacker.position.y === bot.position.y && hacker.position.x >= bot.position.x) {
+                // Kill bot if the distance between hacker and bot <= 1
+                if (Math.max(Math.abs(hacker.position.x - bot.position.x), Math.abs(hacker.position.y - bot.position.y)) <= 1) {
                     bot.dead = true
                 }
                 if(bot.dead){
