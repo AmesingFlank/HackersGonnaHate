@@ -53,11 +53,13 @@ export class Hacker{
                 }
             }
         }
-
-        this.printer = new Sprite(document.getElementById("Hacker"));
+        
     }
 
     render(context) {
+        if(!this.printer){
+            this.printer = new Sprite(document.getElementById("Hacker"));
+        }
         this.printer.render(context, this.position, this.direction)
     }
 }
