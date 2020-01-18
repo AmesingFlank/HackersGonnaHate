@@ -16,8 +16,13 @@ export class Bot{
         this.dead = false;
         this.atDestination = false
         this.nextMove = (state) =>{
+        this.printer = new Sprite(document.getElementById("Hacker"));
 
         }
+    }
+
+    render(context) {
+        this.printer.render(context, this.position, this.direction)
     }
 }
 
@@ -48,6 +53,12 @@ export class Hacker{
                 }
             }
         }
+
+        this.printer = new Sprite(document.getElementById("Hacker"));
+    }
+
+    render(context) {
+        this.printer.render(context, this.position, this.direction)
     }
 }
 
