@@ -1,13 +1,13 @@
-import {Vec2} from 'Vec2.js'
+import {Vec2} from './Vec2.js'
 
-class Action{
+export class Action{
     constructor(direction, activateInvisibility){
         this.direction = direction;
         this.activateInvisibility = activateInvisibility
     }
 }
 
-class Bot{
+export class Bot{
     constructor(position, direction, invisibilityCount){
         this.position = position
         this.direction = direction
@@ -20,7 +20,7 @@ class Bot{
     }
 }
 
-class Hacker{
+export class Hacker{
     constructor(position, direction){
         this.position = position
         this.direction = direction
@@ -49,7 +49,7 @@ class Hacker{
     }
 }
 
-class Game{
+export class Game{
     constructor(mapSize){
         this.bots = []
         this.hackers = []
