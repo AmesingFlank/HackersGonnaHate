@@ -13,16 +13,15 @@ var background;
 // the precise time when we start the game
 var startTime = null;
 
+// gameStamp is an integer starting from 0; it indicates the number of rounds that have lapsed
 var gameStamp;
+
+// delta is the difference between current time and original time
+var delta;
 
 var graphics_context = null;
 
-var delta;
-
-// deviation from the original template
-// no more entity and scene, because we already have existing objects
-// but we still need components for rendering
-
+//entry point
 function onPageLoaded() {
 
     // get the canvas block element from HTML
@@ -37,6 +36,7 @@ function onPageLoaded() {
     startGameLoop();  
 }
 
+//canvas is an HTML block element; it's the canvas that we render on
 function initialiseCanvas(canvas_name) {
     var canvas = document.getElementById(canvas_name);
     graphics_context = canvas.getContext("2d");
@@ -51,7 +51,10 @@ function initialiseBackground(canvas) {
 
 function initialiseGameObject() {
 
-    //TODO
+    gameObject = new Game(new Vec2(5,5), new Vec2(1,5));
+    game.bots.push(new Bot(new Vec2(1,1), new Vec2(0,1),5));
+    game.hackers.push(new Hacker(new Vec2(3,3),new Vec2(0,1)));
+    
 }
 
 function startGameLoop() {
