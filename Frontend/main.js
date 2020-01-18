@@ -54,7 +54,7 @@ function initialiseGameObject() {
     gameObject = new Game(new Vec2(5,5), new Vec2(1,5));
     game.bots.push(new Bot(new Vec2(1,1), new Vec2(0,1),5));
     game.hackers.push(new Hacker(new Vec2(3,3),new Vec2(0,1)));
-    
+
 }
 
 function startGameLoop() {
@@ -92,5 +92,11 @@ function render() {
     background.render(graphics_context);
 
     //render hackers and bots
-    gameObject.render(graphics_context);
+    gameObject.bots.forEach(function (bot) {
+        bot.render(graphics_context);
+    });
+    gameObject.hackers.forEach(function (hacker) {
+        hacker.render(graphics_context);
+    });
+
 }

@@ -16,8 +16,7 @@ export class Bot{
         this.dead = false;
         this.atDestination = false
         this.nextMove = (state) =>{
-        
-
+            return new Action(new Vec2(0,1),false);
         }
     }
 
