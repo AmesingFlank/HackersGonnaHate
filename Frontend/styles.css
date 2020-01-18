@@ -1,0 +1,25 @@
+
+
+body {
+    background-color: #2D364C;
+}
+
+
+h1 {
+    color: white;
+}
+
+
+p {
+    color: white;
+}
+
+.game_canvas_container {
+	display: inline-block;
+	padding: 6px;
+	background-color:#DDDDDD;
+}
+
+.game_canvas {
+  border: solid 1px white;
+}
