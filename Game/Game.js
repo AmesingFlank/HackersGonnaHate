@@ -32,7 +32,6 @@ export class Hacker{
         this.direction = direction
         this.nextMove = (state) => {
             let weights = [0.25, 0.25, 0.25, 0.25] // possibilities of next move in the direction of E, N, W, S respectively
-            weights = [0,1,0,0];
             let random = Math.random()
             let percentile = 0
             for (let i = 0; i < weights.length; i++) {

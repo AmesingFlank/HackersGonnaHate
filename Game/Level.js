@@ -20,3 +20,5 @@ const getGameOfLevel = (level) => {
         return game
     }
 }
+
+export{getGameOfLevel}
