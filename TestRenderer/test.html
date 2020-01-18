@@ -1,18 +1,43 @@
 
 <!doctype html>
-<html>
-   <body>
-      <canvas width = "1080" height = "1080" id = "my_Canvas"></canvas>
-      <p>
-         <label>Code Area</label>
-         <textarea id = "myCodeArea"
-                   rows = "100"
-                   cols = "80">Hello World!</textarea>
-      </p>
+<html lang="en">
+   <head>
+      <meta charset="utf-8">
+      <title>Hackers Gonna Hate</title>
+      <meta name="description" content="Hackers Gonna Hate">
+      <meta name="author" content="Fantastic 4">
+      <style>
+         #boxes{
+            content: "";
+            display: table;
+            clear: both;
+         }
+         div{
+            float:left;
+            height:470px;
+            width:23%;
+            padding:150px;
+         }
+      </style>
+   </head>
 
-      <script type = "module" src="./test_frank.js">
-         
-         
-      </script>
+   <body>
+      <main id="boxes">
+         <div id="canvas">
+            <canvas width = "540" height = "540" id = "my_Canvas"></canvas>
+         </div>
+         <div id="codeArea">
+            <p>
+               <label>Code Area</label>
+               <textarea id = "myCodeArea"
+                         rows = "30"
+                         cols = "80">Hello World!</textarea>
+            </p>
+            <button id="apply">
+               Apply
+            </button>
+         </div>
+      </main>
+      <script type = "module" src="./test.js"></script>
    </body>
 </html>
