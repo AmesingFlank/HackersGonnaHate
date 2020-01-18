@@ -1,4 +1,5 @@
 import {Vec2} from './Vec2.js'
+import {Sprite} from '../Frontend/sprite.js'
 
 export class Action{
     constructor(direction, activateInvisibility){
@@ -21,6 +22,9 @@ export class Bot{
     }
 
     render(context) {
+        if(!this.printer){
+            this.printer = new Sprite(document.getElementById("Bot"));
+        }
         this.printer.render(context, this.position, this.direction)
     }
 }
