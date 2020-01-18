@@ -14,6 +14,7 @@ export class Bot{
         this.invisibilityCount = invisibilityCount
         this.isInvisible = false;
         this.dead = false;
+        this.atDestination = false
         this.nextMove = (state) =>{
 
         }

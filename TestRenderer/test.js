@@ -21,6 +21,12 @@ game.bots[0].nextMove = (state)=>{
 
 
 
+let textBox = document.getElementById("myCodeArea");
+let applyBtn = document.getElementById('apply');
+applyBtn.onclick = ()=>{
+    console.log(textBox.innerHTML)
+}
+
 const initRenderer = ()=>{
     let vertices = [
         -0.5,0.5,0.0,
@@ -208,11 +214,6 @@ const renderFrame = ()=>{
     gl.drawElements(gl.TRIANGLES,6, gl.UNSIGNED_SHORT,0);
 }
 
-
-
-const onClickStartButton = ()=>{
-    
-}
 
 
 
