@@ -1,3 +1,6 @@
+import {Game,Bot,Hacker,Action} from "../Game/Game.js"
+import {Vec2} from "../Game/Vec2.js"
+
 const getGameOfLevel = (level) => {
     if (level === 0) {
         let game = new Game(new Vec2(2,2), new Vec2(2,1));

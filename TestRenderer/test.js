@@ -2,6 +2,7 @@ import {Game,Bot,Hacker,Action} from "../Game/Game.js"
 import {Vec2} from "../Game/Vec2.js"
 import {ShaderProgram} from "./ShaderProgram.js"
 import {readUserCode} from "../Game/ReadUserCode.js"
+import { getGameOfLevel } from "../Game/Level.js";
 
 let canvas = document.getElementById('my_Canvas');
 let gl = canvas.getContext('webgl');
@@ -11,7 +12,9 @@ let shader;
 let frameID = 0;
 
 
+let game = getGameOfLevel(0)
 
+/*
 let game = new Game(new Vec2(5,5), new Vec2(1,5));
 game.bots.push(new Bot(new Vec2(1,1), new Vec2(0,1),5));
 game.hackers.push(new Hacker(new Vec2(3,3),new Vec2(0,1)));
@@ -20,6 +23,7 @@ game.hackers.push(new Hacker(new Vec2(1,0),new Vec2(0,1)));
 game.hackers.push(new Hacker(new Vec2(0,1),new Vec2(0,1)));
 game.hackers.push(new Hacker(new Vec2(1,3),new Vec2(0,1)));
 game.hackers.push(new Hacker(new Vec2(2,1),new Vec2(0,1)));
+*/
 
 
 
