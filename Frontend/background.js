@@ -1,5 +1,7 @@
 "use strict";
 
+import { Sprite } from "./sprite.js";
+
 
 // The Background scene is drawn before everything else in the game. This means it's drawn at the back.
 // At the moment it only has a ClearBackground entity, but any other entites added here would be drawn
@@ -7,15 +9,18 @@
 
 
 class Background {
-    constructor(width=1280, height=800, row = 10, column = 10) {
+    constructor(width=1280, height=800, mapSize, destination) {
         this._time_scale = 1.0;
 
         console.log(this.nameAndID + " Constructing Background scene");
         this._width = width;
+        this._mapSize = mapSize;
         this._height = height;
-        this._row = row;
-        this._column = column;
-        this._sizeLength = Math.min(this._height / (this._row + 1), this._width / (this._column + 1))
+        this._row = mapSize.y;
+        this._column = mapSize.x;
+        this._sizeLength = Math.min(this._height / (this._mapSize.y + 1), this._width / (this._mapSize.x + 1))
+        this._destination = new Sprite(document.getElementById("Target"));
+        this._destinationCoor = destination;
     }
 
     get time_scale() {
@@ -51,14 +56,15 @@ class Background {
     }
 
     render(context) {
-        context.fillStyle = "#333333";
+        context.fillStyle = "#999999";
         context.fillRect(0, 0, this._width, this._height);
         this.drawGrid(context);
+        this._destination.render(context, this._destinationCoor, {sizeLength: this._sizeLength, mapSize: this._mapSize})
     }
     
     drawGrid(context){
-        var right = this._sizeLength / 2 + this._column * this._sizeLength
-        var bottom = this._sizeLength / 2 + this._row * this._sizeLength
+        var right = this._sizeLength / 2 + this._mapSize.x * this._sizeLength
+        var bottom = this._sizeLength / 2 + this._mapSize.y * this._sizeLength
 
         for (var x = this._sizeLength / 2; x <= right; x += this._sizeLength) {
             context.moveTo(x, this._sizeLength / 2);
