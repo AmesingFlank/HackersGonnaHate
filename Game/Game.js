@@ -151,8 +151,14 @@ export class Game{
         messenger.direction.y = move.y
         messenger.isInvisible = move.goInvisible
         if(move.goInvisible){
-            console.log("is invisible")
+            messenger.invisibilityCount -= 1;
+            if(messenger.invisibilityCount < 0){
+                alert("You have used more invisibility then you are allowed to!")
+                messenger.dead = true
+                this.killedMessengers.push(messenger)
+            }
         }
+        
     }
     applyHackerMove(hacker,move){
         hacker.position.x += move.x;
