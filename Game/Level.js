@@ -122,7 +122,7 @@ Hopefully after playing these introductory games, you will converse with our mes
         // Complete it by accessing the hackers array.
         me.dangerous = () => {
             for (    hacker    game.hackers) {
-                return hacker.position.y === bot.position.y + 1
+                return hacker.position.y === me.position.y + 1
             }
         }
         
