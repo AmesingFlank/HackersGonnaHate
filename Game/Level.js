@@ -82,7 +82,7 @@ const getGameOfLevel = (level) => {
         return game
     }
     if (level === 4) {
-        let game = new Game(new Vec2(9, 9), new Vec2(10, 10), MODE_ALL_MOVES, 5);
+        let game = new Game(new Vec2(10, 10), new Vec2(10, 10), MODE_ALL_MOVES, 5);
         game.messengers.push(new Messenger(new Vec2(0, 0), new Vec2(0, 1), 5));
         game.hackers.push(new Hacker(new Vec2(1, 1), new Vec2(-1, 0)));
         game.hackers.push(new Hacker(new Vec2(3, 3), new Vec2(1, 0)));
