@@ -38,6 +38,7 @@ p {
 
 #level_text {
     font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+    padding-bottom: 10px;
 
 }
 
@@ -81,8 +82,13 @@ p {
 .button {
   font-size: 12px;
   border-radius: 6px;
-  padding-left: 30px;
-  padding-right: 30px;
+  padding-left: 10px;
+  padding-right: 10px;
+}
+
+select {
+    font-size: 13px;
+
 }
 
 
