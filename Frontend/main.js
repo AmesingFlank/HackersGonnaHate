@@ -47,10 +47,15 @@ function onPageLoaded() {
 
 window.onPageLoaded = onPageLoaded
 
+let description_height = document.getElementById("level_description").offsetHeight;
+console.log(description_height);
+
 const editor = CodeMirror.fromTextArea(document.getElementById("code"), {
     mode: "javascript"
 });
-editor.setSize(400, 650);
+editor.setSize(550, 520);
+
+
 
 //canvas is an HTML block element; it's the canvas that we render on
 function initialiseCanvas(canvas_name) {
