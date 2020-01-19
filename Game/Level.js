@@ -6,47 +6,68 @@ const getGameOfLevel = (level) => {
     if (level === 0) {
         let game = new Game(new Vec2(2,2), new Vec2(1,2), MODE_ALL_MOVES,5);
         game.messengers.push(new Messenger(new Vec2(1,0), new Vec2(0,1),5));
-        game.initialCode = `
-            {
-                // How should the messenger move to where it should be?
-                getAllMoves: (game, me) => {
-                    me.move({x: , y:  });
-                    me.move({x: , y:  })
-                }
-            }
-        `;
+        game.initialCode =
+`
+{
+    // How should the messenger move to where it should be?
+    getAllMoves: (game, me) => {
+        me.move({x: , y:  });
+        me.move({x: , y:  })
+    }
+}
+`;
+        game.title = "JavaScript 101 - Hellow World";
+        game.description =
+`
+Welcome to Hackers Gonna Hate! 
+In this game, you will assist our lovely little messenger to go across a dangerous network filled with malicious softwares.
+You will be able to guide our messenger with their language - JavaScript.
+Never heard of it? That's okay! We will be here to help you master the language.
+Hopefully after playing these introductory games, you will converse with our messenger with ease.
+`;
         return game
     }
     if (level === 1) {
         let game = new Game(new Vec2(10,1), new Vec2(10,0), MODE_ALL_MOVES,5);
         game.messengers.push(new Messenger(new Vec2(0,0), new Vec2(0,1),5));
-        game.initialCode = `
-            {
-                getAllMoves: (game, me) => {
-                    let i = 0;
-                    // How many steps does the messenger need to move in a specific direction?
-                    while (i < ) {
-                        me.move({x: , y: });
-                        i = i + 1
-                    }
-                }
-            }
-        `;
+        game.initialCode =
+`
+{
+    getAllMoves: (game, me) => {
+        let i = 0;
+        // How many steps does the messenger need to move in a specific direction?
+        while (i < ) {
+            me.move({x: , y: });
+            i = i + 1
+        }
+    }
+}
+`;
+        game.title = "JavaScript 101 - while loop";
+        game.description =
+`
+The structure of while loop is as follows:
+while (condition) {
+    action
+}
+The action is only executed when the condition holds. 
+`;
         return game
     }
     if (level === 2) {
         let game = new Game(new Vec2(1,10), new Vec2(0,10), MODE_ALL_MOVES,5);
         game.messengers.push(new Messenger(new Vec2(0,0), new Vec2(0,1),5));
-        game.initialCode = `
-            {
-                getAllMoves: (game, me) => {
-                    // How many steps does the messenger need to move in a specific direction?
-                    for (let i = 0; i <  ; i++) {
-                        me.move({x: , y:  })
-                    }
-                }
-            }
-        `;
+        game.initialCode =
+`
+{
+    getAllMoves: (game, me) => {
+        // How many steps does the messenger need to move in a specific direction?
+        for (let i = 0; i <  ; i++) {
+            me.move({x: , y:  })
+        }
+    }
+}
+`;
         return game
     }
     if (level === 3) {
@@ -63,22 +84,23 @@ const getGameOfLevel = (level) => {
             }
         };
         game.hackers.push(hacker);
-        game.initialCode = `
-            {
-                getNextMove: (game, me) => {
-                    let hacker = game.hackers[0];
-                    // A malicious hacker is looking for its prey on its row!
-                    // In what situation is it definitely safe for the messenger to move forward?
-                    if (hacker.position.x ===  ) {
-                        return {x: 0, y: 1}
-                    } else if (hacker.position.x ===  ) {
-                        return {x: 0, y: 1}
-                    } else {
-                        return {x: 0, y: 0}
-                    }
-                }
-            }
-        `;
+        game.initialCode =
+`
+{
+    getNextMove: (game, me) => {
+        let hacker = game.hackers[0];
+        // A malicious hacker is looking for its prey on its row!
+        // In what situation is it definitely safe for the messenger to move forward?
+        if (hacker.position.x ===  ) {
+            return {x: 0, y: 1}
+        } else if (hacker.position.x ===  ) {
+            return {x: 0, y: 1}
+        } else {
+            return {x: 0, y: 0}
+        }
+    }
+}
+`;
         return game
     }
     if (level === 4) {
@@ -100,41 +122,42 @@ const getGameOfLevel = (level) => {
                 }
             }
         }
-        game.initialCode = `
-            {
-                getNextMove: (game, me) => {
-                    // More hackers are patrolling on their respective rows!
-                    // Our messenger is actually more capable than you might have thought,
-                    // you can make the messenger invisible to evade attacks. 
-                    // However, only 5 times - but sufficient for this game.
-                    
-                    // This is an auxiliary function which tells you whether a hacker will be on the same row as you if you move forward.
-                    // Your messenger will be put into a dangerous position if that happens.
-                    // Complete it by accessing the hackers array.
-                    me.dangerous = () => {
-                        for (    hacker    game.hackers) {
-                            return hacker.position.y === bot.position.y + 1
-                        }
-                    }
-                    
-                    let hacker = game.hackers[0];
-                    if (me.position.y < 10) {
-                        let shouldGoInvisible;
-                        if (me.dangerous()) {
-                            // Change the visibility here!
-                            shouldGoInvisible = 
-                        }
-                        else{
-                            shouldGoInvisible = 
-                        }
-                        return {x: , y: ,goInvisible:shouldGoInvisible}
-                    }
-                    else {
-                        return {x: , y: ,goInvisible:shouldGoInvisible}
-                    }
-                }
+        game.initialCode =
+`
+{
+    getNextMove: (game, me) => {
+        // More hackers are patrolling on their respective rows!
+        // Our messenger is actually more capable than you might have thought,
+        // you can make the messenger invisible to evade attacks. 
+        // However, only 5 times - but sufficient for this game.
+        
+        // This is an auxiliary function which tells you whether a hacker will be on the same row as you if you move forward.
+        // Your messenger will be put into a dangerous position if that happens.
+        // Complete it by accessing the hackers array.
+        me.dangerous = () => {
+            for (    hacker    game.hackers) {
+                return hacker.position.y === bot.position.y + 1
             }
-        `;
+        }
+        
+        let hacker = game.hackers[0];
+        if (me.position.y < 10) {
+            let shouldGoInvisible;
+            if (me.dangerous()) {
+                // Change the visibility here!
+                shouldGoInvisible = 
+            }
+            else{
+                shouldGoInvisible = 
+            }
+            return {x: , y: , goInvisible:shouldGoInvisible}
+        }
+        else {
+            return {x: , y: , goInvisible:false}
+        }
+    }
+}
+`;
         return game
     }
     if (level === 5) {
@@ -156,13 +179,14 @@ const getGameOfLevel = (level) => {
             game.hackers.push(new Hacker(new Vec2(x, y), new Vec2(dirx, diry)));
         }
 
-        game.initialCode = `
-            {
-                getNextMove: (game, me) => {
-                    
-                }
-            }
-        `;
+        game.initialCode =
+`
+{
+    getNextMove: (game, me) => {
+        
+    }
+}
+`;
         return game
     }
 };
