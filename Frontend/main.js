@@ -108,10 +108,6 @@ function initialiseCodebox(){
     }
 
 
-    let levelSelect = document.getElementById("levelSelect");
-    levelSelect.onselect = ()=>{
-        console.log(levelSelect.getValue())
-    }
 }
 
 function initialiseGameObject() {

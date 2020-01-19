@@ -197,7 +197,7 @@ Now, let us shapen our new weapon by practice.
     }
 }
 `;
-        game.title("JavaScript 101 - Array");
+        game.title = "JavaScript 101 - Array";
         game.description(`
 - "You have a Hacker." - "Easy! I can remember that."
 - "You now have 5 Hackers." - "Emmm, I will try to remember them."
