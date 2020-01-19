@@ -125,7 +125,7 @@ export class Game{
                 if(this.messengers[i].dead || this.messengers[i].atDestination){
                     continue;
                 }
-                let move = this.messengers[i].getNextMove(state)
+                let move = this.messengers[i].getNextMove(state,this.messengers[i])
                 this.applyMessengerMove(this.messengers[i],move)
                 if(this.messengers[i].position.equals(this.destination)){
                     this.messengers[i].atDestination = true;
@@ -150,6 +150,9 @@ export class Game{
         messenger.direction.x = move.x
         messenger.direction.y = move.y
         messenger.isInvisible = move.goInvisible
+        if(move.goInvisible){
+            console.log("is invisible")
+        }
     }
     applyHackerMove(hacker,move){
         hacker.position.x += move.x;
