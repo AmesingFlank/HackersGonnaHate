@@ -28,8 +28,7 @@ export class Hacker{
         this.position = position
         this.direction = direction
         
-        this.getMextMove = (state) => {
-            
+        this.getNextMove = (state) => {
             let weights = [0.25, 0.25, 0.25, 0.25] // possibilities of next move in the direction of E, N, W, S respectively
             let random = Math.random()
             let percentile = 0
@@ -117,7 +116,7 @@ export class Game{
                     continue;
                 }
                 // Kill bot if the distance between hacker and bot <= 1
-                if (Math.max(Math.abs(hacker.position.x - bot.position.x), Math.abs(hacker.position.y - bot.position.y)) <= 1) {
+                if (hacker.position.x === bot.position.x && hacker.position.y === bot.position.y) {
                     bot.dead = true
                 }
                 if(bot.dead){
