@@ -41,7 +41,7 @@ Hopefully after playing these introductory games, you will converse with our mes
 }
 `;
         game.title = "JavaScript 101 - while loop";
-        get.description = `
+        game.description = `
 A while loop look like this:
 
 while (condition) {
@@ -80,7 +80,7 @@ That's right, the code is trying to sum up the numbers 1, 2 and 3!
 }
 `;
         game.title = "JavaScript 101 - foor loop";
-        get.description = `
+        game.description = `
 A for loop generally has one of the following two forms:
 
     for (var i = 0; i < length; i++) {
