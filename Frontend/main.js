@@ -90,7 +90,8 @@ function initialiseCodebox(){
     let description = document.getElementById("level_description");
 
     title.innerHTML = gameObject.title;
-    description.innerHTML = document.description
+    console.log(gameObject.description)
+    description.innerHTML = gameObject.description
 }
 
 function initialiseGameObject() {
@@ -99,7 +100,7 @@ function initialiseGameObject() {
     gameObject.messengers.push(new Messenger(new Vec2(1,1), new Vec2(0,1),5));
     gameObject.hackers.push(new Hacker(new Vec2(2,2),new Vec2(0,0)));
 */
-    gameObject = getGameOfLevel(5)
+    gameObject = getGameOfLevel(0)
 }
 
 function startGameLoop() {
