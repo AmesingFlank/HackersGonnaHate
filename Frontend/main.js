@@ -82,6 +82,8 @@ function initialiseCodebox(){
             readUserCode(gameObject.messengers[i],code)
         }
     }
+
+    editor.setValue(gameObject.initialCode);
 }
 
 function initialiseGameObject() {

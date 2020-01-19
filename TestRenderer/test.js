@@ -1,8 +1,4 @@
-<<<<<<< HEAD
-import {Game,Bot,Hacker, MODE_NEXT_MOVE} from "../Game/Game.js"
-=======
 import {Game,Messenger,Hacker} from "../Game/Game.js"
->>>>>>> 8376017768ec884bda9c859ea79eac5bb84136f8
 import {Vec2} from "../Game/Vec2.js"
 import {ShaderProgram} from "./ShaderProgram.js"
 import {readUserCode} from "../Game/ReadUserCode.js"

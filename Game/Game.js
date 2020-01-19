@@ -69,7 +69,7 @@ export class Hacker{
 }
 
 export class Game{
-    constructor(mapSize,destination,mode,messengerInvisibilityCount,initialCode){
+    constructor(mapSize,destination,mode,messengerInvisibilityCount,initialCode,title,description){
         this.messengers = []
         this.hackers = []
         this.mapSize = mapSize
@@ -82,26 +82,30 @@ export class Game{
         this.messengerInvisibilityCount = messengerInvisibilityCount
 
         this.shoudBuildNextMovesUsingAllMoves = mode === MODE_ALL_MOVES
+        this.precomputedMoves = []
+        this.currentMoveIDs = []
 
         this.initialCode = initialCode
 
         this.started = false;
 
+        this.title = title
+        this.description = description
     }
     buildNextMovesUsingAllMoves(){
         for(let i = 0;i<this.messengers.length;++i){
-            let allMoves = []
+            this.precomputedMoves.push([])
+            this.currentMoveIDs.push(0)
+
             this.messengers[i].move = (action) =>{
-                allMoves.push(action)
+                this.precomputedMoves[i].push(action)
             }
             this.messengers[i].getAllMoves(this,this.messengers[i]);
 
 
-            let moveID = 0
-
             this.messengers[i].getNextMove = (game) => {
-                let result = allMoves[moveID]
-                moveID += 1
+                let result = this.precomputedMoves[i][this.currentMoveIDs[i]]
+                this.currentMoveIDs[i] += 1
                 return result
             }
 
@@ -134,7 +138,7 @@ export class Game{
 
         for(let i = 0;i<this.hackers.length;++i){
             let move = this.hackers[i].getNextMove(state)
-            this.applyMessengerMove(this.hackers[i],move)
+            this.applyHackerMove(this.hackers[i],move)
 
         }
         this.checkKilling();
