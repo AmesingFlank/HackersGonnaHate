@@ -50,7 +50,7 @@ const getGameOfLevel = (level) => {
         return game
     }
     if (level === 3) {
-        let game = new Game(new Vec2(4, 1), new Vec2(2, 1), MODE_ALL_MOVES, 5);
+        let game = new Game(new Vec2(4, 1), new Vec2(2, 1), MODE_NEXT_MOVE, 5);
         game.messengers.push(new Messenger(new Vec2(2, 0), new Vec2(0, 1), 5));
         let hacker = new Hacker(new Vec2(1, 1), new Vec2(1, 0));
         hacker.getNextMove = (state) => {
