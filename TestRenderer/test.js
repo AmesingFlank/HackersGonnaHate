@@ -1,4 +1,4 @@
-import {Game,Bot,Hacker} from "../Game/Game.js"
+import {Game,Messenger,Hacker} from "../Game/Game.js"
 import {Vec2} from "../Game/Vec2.js"
 import {ShaderProgram} from "./ShaderProgram.js"
 import {readUserCode} from "../Game/ReadUserCode.js"
@@ -38,8 +38,8 @@ applyBtn.onclick = ()=>{
 
     let code = textBox.value;
     console.log("reading \n"+code)
-    for(let i = 0;i<game.bots.length;++i){
-        readUserCode(game.bots[i],code)
+    for(let i = 0; i<game.messengers.length; ++i){
+        readUserCode(game.messengers[i],code)
     }
 }
 
@@ -210,15 +210,15 @@ const renderFrame = ()=>{
     if(botCountLocation === -1){
         console.log("bot count loc wrong")
     }
-    gl.uniform1i(botCountLocation,game.bots.length);
+    gl.uniform1i(botCountLocation,game.messengers.length);
 
-    for(let i = 0;i<game.bots.length;++i){
+    for(let i = 0; i<game.messengers.length; ++i){
         let name = "bots[" + i+"]";
         let loc = gl.getUniformLocation(shader.program,name);
         if(mapSizeLocation === -1){
             console.log("bot loc wrong "+i);
         }
-        gl.uniform2fv(loc,[game.bots[i].position.x ,game.bots[i].position.y]);
+        gl.uniform2fv(loc,[game.messengers[i].position.x ,game.messengers[i].position.y]);
 
     }
 
@@ -261,11 +261,11 @@ let onNewFrame = ()=>{
     renderFrame();
     
     requestAnimationFrame(onNewFrame)
-    if(game.killedBots.length == game.bots.length){
+    if(game.killedMessengers.length == game.messengers.length){
         gameResultText.innerHTML = "you Lost :(("
         gameStarted = false
     }
-    if(game.arrivedBots.length == game.bots.length){
+    if(game.arrivedMessengers.length == game.messengers.length){
         gameResultText.innerHTML = "you won ! "
         gameStarted = false
     }

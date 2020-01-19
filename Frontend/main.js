@@ -1,5 +1,5 @@
 "use strict";
-import {Game,Bot,Hacker} from '../Game/Game.js'
+import {Game,Messenger,Hacker} from '../Game/Game.js'
 import {Vec2} from '../Game/Vec2.js'
 import {Background} from './background.js'
 
@@ -7,7 +7,7 @@ import {Background} from './background.js'
 // It sets the scene and begins the game loop which updates and renders everything.
 
 // this the Game object defined in Game.js
-// it includes bots (an array), hackers (an array) and mapsize
+// it includes messengers (an array), hackers (an array) and mapsize
 var gameObject;   
 
 // this is the grid that we see on the screen
@@ -32,7 +32,7 @@ function onPageLoaded() {
     // get the canvas block element from HTML
     var canvas = initialiseCanvas("game_canvas");
 
-    // initialise game object (bots, hackers, mapsize)
+    // initialise game object (messengers, hackers, mapsize)
     initialiseGameObject();
 
     // initialise the background object
@@ -65,7 +65,7 @@ function initialiseBackground(canvas) {
 function initialiseGameObject() {
 
     gameObject = new Game(new Vec2(5,5), new Vec2(1,5));
-    gameObject.bots.push(new Bot(new Vec2(1,1), new Vec2(0,1),5));
+    gameObject.messengers.push(new Messenger(new Vec2(1,1), new Vec2(0,1),5));
     gameObject.hackers.push(new Hacker(new Vec2(2,2),new Vec2(0,0)));
 
 }
@@ -103,9 +103,9 @@ function render() {
     //render background
     background.render(graphics_context)
 
-    //render hackers and bots
-    gameObject.bots.forEach(function (bot) {
-        bot.render(graphics_context, boardInfo);
+    //render hackers and messengers
+    gameObject.messengers.forEach(function (messenger) {
+        messenger.render(graphics_context, boardInfo);
     });
     gameObject.hackers.forEach(function (hacker) {
         hacker.render(graphics_context, boardInfo);
