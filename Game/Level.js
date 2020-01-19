@@ -169,6 +169,15 @@ Now, let us shapen our new weapon by practice.
     }
 }
 `;
+        game.description = `
+"You have a Hacker." - "Easy! I can remember that."
+- "You now have 5 Hackers." - "Emmm, I will try to remember them."
+- "You now will have hundrends of Hackers." - "My gosh, how am I supposed to remember all of them?"
+That is exactly why we need array, which can store a large collection of something together. What's more? 
+Since the collection is recorded in order, you can access any element at any time easily. With such an 
+powerful weapon, I believe this puzzle is as easy as pie for smarty like you.
+        `;
+        game.title = 'Javascript 101 -- Array'
         return game
     }
     if (level === 5) {
