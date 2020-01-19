@@ -41,28 +41,10 @@ Hopefully after playing these introductory games, you will converse with our mes
 }
 `;
         game.title = "JavaScript 101 - while loop";
-        get.description = `
-A while loop look like this:
-
-while (condition) {
-    action
-}
-
+        game.description = `
+A while loop look like this: while (condition) {action}. 
 If the condition holds, then the action will be triggered;
 and the action will be triggered until the condition has broken.
-A very common implementation of while loop works like this:
-
-var i = 1; var sum = 0
-while (i <= 3) {
-    sum = sum + i
-    i = i + 1
-}
-
-Take a moment to think about what the above code is doing?
-.
-.
-.
-That's right, the code is trying to sum up the numbers 1, 2 and 3!
 `;
         return game
     }
@@ -79,15 +61,16 @@ That's right, the code is trying to sum up the numbers 1, 2 and 3!
     }
 }
 `;
-        game.title = "JavaScript 101 - foor loop";
-        get.description = `
-A foor loop generally has one of the following two forms:
-
-for (let i = 0; i < length; i++) {
-    action
-}
-
-This form is alike the while loop that we have introduced, except 
+        game.title = "JavaScript 101 - for loop";
+        game.description = `
+A for loop generally has one of the following two forms. 
+The first form: for (var i = 0; i < length; i++) {action}
+This is equivalent to the while loop that we have introduced previously, except that we have piece together the construction of variable i, 
+the condition it ought to hold and its increment within one pair of parentheses. 
+The other form looks like this: for (var object of objects) {action}
+Here, "objects" is an array (we will explain this term in more details afterwards!) containing some objects, as the name implies.
+Then for every object in this array, we will carry out the action. 
+Now, let's try out our new friend, for loop!
 `;
         return game
     }
@@ -121,6 +104,15 @@ This form is alike the while loop that we have introduced, except
     }
 }
 `;
+        game.title("JavaScript 101 - if, else if, else");
+        game.description(`
+Think about this statement: "If the lecture tomorrow is at 9am, I will skip it. Otherwise, I'd better go", which describes 
+a causal relationship. In fact, the "if" syntax in JavaScript is very similar to that of 
+our daily language. When the event inside the parentheses after "if" is true, the events 
+described in the following curly parentheses will happen. What's more exciting is the 
+key word "else", which allows you to take other actions when things don't go as you have expected. 
+Now, let us shapen our new weapon by practice.
+`);
         return game
     }
     if (level === 4) {
@@ -205,6 +197,15 @@ This form is alike the while loop that we have introduced, except
     }
 }
 `;
+        game.title("JavaScript 101 - Array");
+        game.description(`
+- "You have a Hacker." - "Easy! I can remember that."
+- "You now have 5 Hackers." - "Emmm, I will try to remember them."
+- "You now will have hundrends of Hackers." - "My gosh, how am I supposed to remember all of them?"
+That is exactly why we need array, which can store a large collection of something together. What's more? 
+Since the collection is recorded in order, you can access any element at any time easily. With such an 
+powerful weapon, I believe this puzzle is as easy as pie for smarty like you.       
+`);
         return game
     }
 };
