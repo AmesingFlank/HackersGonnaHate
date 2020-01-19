@@ -50,7 +50,7 @@ window.onPageLoaded = onPageLoaded
 const editor = CodeMirror.fromTextArea(document.getElementById("code"), {
     mode: "javascript"
 });
-editor.setSize(1295, 500);
+editor.setSize(400, 650);
 
 //canvas is an HTML block element; it's the canvas that we render on
 function initialiseCanvas(canvas_name) {
@@ -62,7 +62,7 @@ function initialiseCanvas(canvas_name) {
 
 function initialiseBackground(canvas) {
 
-    background = new Background(1280, 600, gameObject.mapSize, gameObject.destination);
+    background = new Background(700, 700, gameObject.mapSize, gameObject.destination);
     boardInfo = {sideLength: background.getSideLength(), mapSize: gameObject.mapSize, shift: background._shift};
 }
 
