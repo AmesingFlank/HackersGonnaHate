@@ -59,7 +59,7 @@ function initialiseCanvas(canvas_name) {
 function initialiseBackground(canvas) {
 
     background = new Background(1280, 600, gameObject.mapSize.x, gameObject.mapSize.y);
-    boardInfo = {sizeLength: background.getSizeLength()};
+    boardInfo = {sizeLength: background.getSizeLength(), mapSize: gameObject.mapSize};
 }
 
 function initialiseGameObject() {
