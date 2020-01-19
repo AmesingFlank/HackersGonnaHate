@@ -143,6 +143,14 @@ export class Game{
         this.checkKilling();
     }
     applyMessengerMove(messenger, move){
+
+        if(Math.abs(move.x) + Math.abs(move.y) > 1 || !Number.isInteger(move.y) || !Number.isInteger(move.x)){
+            alert("invalid move!  ")
+            messenger.dead = true
+            this.killedMessengers.push(messenger)
+            return;
+        }
+
         messenger.position.x += move.x;
         messenger.position.y += move.y;
         messenger.position.x = Math.max(0,Math.min(messenger.position.x,this.mapSize.x))

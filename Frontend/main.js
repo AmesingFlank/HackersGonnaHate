@@ -33,8 +33,19 @@ let currentLevel = 0
 //entry point
 function onPageLoaded() {
 
+    console.log([graphics_context,canvas])
+
+    if(graphics_context ){
+        console.log("clearing")
+        graphics_context.clearRect(0,0,graphics_context.canvas.width,graphics_context.canvas.height);
+        graphics_context.canvas.width = graphics_context.canvas.width
+    }
+
     // get the canvas block element from HTML
     var canvas = initialiseCanvas("game_canvas");
+
+
+    
 
     // initialise game object (messengers, hackers, mapsize)
     initialiseGameObject();
@@ -105,6 +116,14 @@ function initialiseCodebox(){
     resetBtn.onclick = ()=>{
         onPageLoaded();
 
+    }
+
+
+    let selector = document.getElementById("levelSelect")
+    console.log(selector)
+    selector.onchange = ()=>{
+        currentLevel = Number(selector.value)
+        onPageLoaded();
     }
 
 

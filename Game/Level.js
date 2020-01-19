@@ -104,15 +104,15 @@ Now, let's try out our new friend, for loop!
     }
 }
 `;
-        game.title("JavaScript 101 - if, else if, else");
-        game.description(`
+        game.title="JavaScript 101 - if, else if, else";
+        game.description=`
 Think about this statement: "If the lecture tomorrow is at 9am, I will skip it. Otherwise, I'd better go", which describes 
 a causal relationship. In fact, the "if" syntax in JavaScript is very similar to that of 
 our daily language. When the event inside the parentheses after "if" is true, the events 
 described in the following curly parentheses will happen. What's more exciting is the 
 key word "else", which allows you to take other actions when things don't go as you have expected. 
 Now, let us shapen our new weapon by practice.
-`);
+`;
         return game
     }
     if (level === 4) {
@@ -198,14 +198,14 @@ Now, let us shapen our new weapon by practice.
 }
 `;
         game.title = "JavaScript 101 - Array";
-        game.description(`
+        game.description=`
 - "You have a Hacker." - "Easy! I can remember that."
 - "You now have 5 Hackers." - "Emmm, I will try to remember them."
 - "You now will have hundrends of Hackers." - "My gosh, how am I supposed to remember all of them?"
 That is exactly why we need array, which can store a large collection of something together. What's more? 
 Since the collection is recorded in order, you can access any element at any time easily. With such an 
 powerful weapon, I believe this puzzle is as easy as pie for smarty like you.       
-`);
+`;
         return game
     }
 };
