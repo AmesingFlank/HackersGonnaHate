@@ -89,6 +89,7 @@ function initialiseCodebox(){
     let textBox = document.getElementById("code");
     let applyBtn = document.getElementById('apply');
     let gameResultText = document.getElementById("gameResultText")
+    gameResultText.innerHTML = "";
 
     applyBtn.onclick = ()=>{
         gameObject.started = true
