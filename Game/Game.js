@@ -1,12 +1,8 @@
 import {Vec2} from './Vec2.js'
 import {Sprite} from '../Frontend/sprite.js'
 
-export class Action{
-    constructor(direction, activateInvisibility){
-        this.direction = direction;
-        this.activateInvisibility = activateInvisibility
-    }
-}
+export const MODE_NEXT_MOVE = 111
+export const MODE_ALL_MOVES = 222
 
 export class Bot{
     constructor(position, direction, invisibilityCount){
@@ -16,9 +12,7 @@ export class Bot{
         this.isInvisible = false;
         this.dead = false;
         this.atDestination = false
-        this.nextMove = (state) =>{
-            return new Action(new Vec2(0,1),false);
-        }
+       
     }
 
     render(context) {
@@ -30,10 +24,10 @@ export class Bot{
 }
 
 export class Hacker{
-    constructor(position, direction){
+    constructor(position, direction ){
         this.position = position
         this.direction = direction
-        this.nextMove = (state) => {
+        this.getMextMove = (state) => {
             let weights = [0.25, 0.25, 0.25, 0.25] // possibilities of next move in the direction of E, N, W, S respectively
             let random = Math.random()
             let percentile = 0
@@ -41,16 +35,16 @@ export class Hacker{
                 percentile += weights[i];
                 if (random <= percentile) {
                     if (i === 0) {
-                        return new Action(new Vec2(1,0), false)
+                        return {x:1,y:0,goInvisible:false}
                     }
                     if (i === 1) {
-                        return new Action(new Vec2(0,1), false)
+                        return {x:0,y:1,goInvisible:false}
                     }
                     if (i === 2) {
-                        return new Action(new Vec2(-1,0), false)
+                        return {x:-1,y:0,goInvisible:false}
                     }
                     if (i === 3) {
-                        return new Action(new Vec2(0,-1), false)
+                        return {x:0,y:-1,goInvisible:false}
                     }
                 }
             }
@@ -67,7 +61,7 @@ export class Hacker{
 }
 
 export class Game{
-    constructor(mapSize,destination){
+    constructor(mapSize,destination,mode,botInvisibilityCount){
         this.bots = []
         this.hackers = []
         this.mapSize = mapSize
@@ -75,11 +69,14 @@ export class Game{
 
         this.arrivedBots = []
         this.killedBots = []
+
+        this.mode = mode
+        this.botInvisibilityCount = botInvisibilityCount
     }
     step(){
         let state = this;
         for(let i = 0;i<this.bots.length;++i){
-            let move = this.bots[i].nextMove(state)
+            let move = this.bots[i].getNextMove(state)
             this.applyBotMove(this.bots[i],move)
             if(this.bots[i].position.equals(this.destination)){
                 this.bots[i].atDestination = true;
@@ -88,26 +85,28 @@ export class Game{
         }
 
         for(let i = 0;i<this.hackers.length;++i){
-            let move = this.hackers[i].nextMove(state)
+            let move = this.hackers[i].getNextMove(state)
             this.applyBotMove(this.hackers[i],move)
 
         }
         this.checkKilling();
     }
     applyBotMove(bot,move){
-        bot.position.x += move.direction.x;
-        bot.position.y += move.direction.y;
+        bot.position.x += move.x;
+        bot.position.y += move.y;
         bot.position.x = Math.max(0,Math.min(bot.position.x,this.mapSize.x))
         bot.position.y = Math.max(0,Math.min(bot.position.y,this.mapSize.y))
-        bot.direction = move.direction
-        bot.isInvisible = move.activateInvisibility
+        bot.direction.x = move.x
+        bot.direction.y = move.y
+        bot.isInvisible = move.goInvisible
     }
     applyHackerMove(hacker,move){
-        hacker.position.x += move.direction.x;
-        hacker.position.y += move.direction.y;
+        hacker.position.x += move.x;
+        hacker.position.y += move.y;
         hacker.position.x = Math.max(0,Math.min(hacker.position.x,this.mapSize.x))
         hacker.position.y = Math.max(0,Math.min(hacker.position.y,this.mapSize.y))
-        hacker.direction = move.direction
+        hacker.direction.x = move.x
+        hacker.direction.y = move.y
     }
     checkKilling(){
         for (let hacker of this.hackers) {

@@ -1,6 +1,6 @@
 
 {
     nextMove : ()=>{
-        return new Action(new Vec2(0,1),false);
+        return new {x:1,y:0,goInvisible:false};
     }
 }

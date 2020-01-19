@@ -1,4 +1,4 @@
-import {Game,Bot,Hacker,Action} from "../Game/Game.js"
+import {Game,Bot,Hacker} from "../Game/Game.js"
 import {Vec2} from "../Game/Vec2.js"
 import {ShaderProgram} from "./ShaderProgram.js"
 import {readUserCode} from "../Game/ReadUserCode.js"
@@ -12,7 +12,7 @@ let shader;
 let frameID = 0;
 
 
-let game = getGameOfLevel(2)
+let game = getGameOfLevel(1)
 
 /*
 let game = new Game(new Vec2(5,5), new Vec2(1,5));

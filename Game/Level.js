@@ -1,4 +1,4 @@
-import {Game,Bot,Hacker,Action} from "../Game/Game.js"
+import {Game,Bot,Hacker} from "../Game/Game.js"
 import {Vec2} from "../Game/Vec2.js"
 
 const getGameOfLevel = (level) => {
