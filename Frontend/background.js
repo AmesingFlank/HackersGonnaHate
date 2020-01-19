@@ -15,7 +15,7 @@ class Background {
         this._height = height;
         this._row = row;
         this._column = column;
-        this._padding = 20;
+        this._sizeLength = Math.min(this._height / (this._row + 1), this._width / (this._column + 1))
     }
 
     get time_scale() {
@@ -42,18 +42,8 @@ class Background {
         }
     }
 
-    getSizeLength() {
-        if(!this._sizeLength){
-            var dx = (this._width - this._padding * 2) / this._column
-            var dy = (this._height - this._padding * 2) / this._row
-            var sizeLength = Math.min(dx, dy)
-            this._sizeLength = sizeLength
-        }
+    getSizeLength(){
         return this._sizeLength
-    }
-
-    getPadding() {
-        return this._padding
     }
 
     update(timeDelta) {
@@ -67,21 +57,22 @@ class Background {
     }
     
     drawGrid(context){
-        this.getSizeLength()
-        var right = this._padding + this._column * this._sizeLength
-        var bottom = this._padding + this._row * this._sizeLength
+        var right = this._sizeLength / 2 + this._column * this._sizeLength
+        var bottom = this._sizeLength / 2 + this._row * this._sizeLength
 
-        for (var x = this._padding; x <= right; x += this._sizeLength) {
-            context.moveTo(x, this._padding);
+        for (var x = this._sizeLength / 2; x <= right; x += this._sizeLength) {
+            context.moveTo(x, this._sizeLength / 2);
             context.lineTo(x, bottom);
         }
 
-        for (var x = this._padding; x <= bottom; x += this._sizeLength) {
-            context.moveTo(this._padding, x);
+        for (var x = this._sizeLength / 2; x <= bottom; x += this._sizeLength) {
+            context.moveTo(this._sizeLength / 2, x);
             context.lineTo(right, x);
         }
         context.strokeStyle = "white";
-        context.stroke();
+        for (var x = 1; x<=4; x++) {
+            context.stroke();
+        }
     }
 
 }

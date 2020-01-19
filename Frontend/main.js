@@ -43,6 +43,10 @@ function onPageLoaded() {
 
 window.onPageLoaded = onPageLoaded
 
+const editor = CodeMirror.fromTextArea(document.getElementById("code"), {
+    mode: "javascript"
+  });
+
 //canvas is an HTML block element; it's the canvas that we render on
 function initialiseCanvas(canvas_name) {
     var canvas = document.getElementById(canvas_name);
@@ -54,7 +58,7 @@ function initialiseCanvas(canvas_name) {
 function initialiseBackground(canvas) {
 
     background = new Background(1280, 600, gameObject.mapSize.x, gameObject.mapSize.y);
-    boardInfo = {sizeLength: background.getSizeLength(), padding: background.getPadding()};
+    boardInfo = {sizeLength: background.getSizeLength()};
 }
 
 function initialiseGameObject() {
@@ -96,7 +100,7 @@ function update(timestamp) {
 
 function render() {
     //render background
-    background.render(graphics_context);
+    background.render(graphics_context)
 
     //render hackers and bots
     gameObject.bots.forEach(function (bot) {

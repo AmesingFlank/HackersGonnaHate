@@ -9,17 +9,23 @@ export class Bot{
         this.position = position
         this.direction = direction
         this.invisibilityCount = invisibilityCount
-        this.isInvisible = false;
+        this.isInvisible = true;
         this.dead = false;
         this.atDestination = false
        
     }
 
     render(context, board) {
-        if(!this.printer){
-            this.printer = new Sprite(document.getElementById("Bot"));
+        if(!this.printers){
+            this.printers = [new Sprite(document.getElementById("Bot")), new Sprite(document.getElementById("TransparentBot"))];
         }
-        this.printer.render(context, this.position, board)
+        if(!this.isInvisible) {
+            this.printers[0].render(context, this.position, board);
+        }
+        else {
+            console.log("hi")
+            this.printers[1].render(context, this.position, board);
+        }
     }
 }
 
