@@ -24,6 +24,8 @@ var delta;
 
 var graphics_context = null;
 
+var boardInfo;
+
 //entry point
 function onPageLoaded() {
 
@@ -51,14 +53,15 @@ function initialiseCanvas(canvas_name) {
 
 function initialiseBackground(canvas) {
 
-    background = new Background();
+    background = new Background(1280, 600, gameObject.mapSize.x, gameObject.mapSize.y);
+    boardInfo = {sizeLength: background.getSizeLength(), padding: background.getPadding()};
 }
 
 function initialiseGameObject() {
 
     gameObject = new Game(new Vec2(5,5), new Vec2(1,5));
     gameObject.bots.push(new Bot(new Vec2(1,1), new Vec2(0,1),5));
-    gameObject.hackers.push(new Hacker(new Vec2(3,3),new Vec2(0,1)));
+    gameObject.hackers.push(new Hacker(new Vec2(2,2),new Vec2(0,0)));
 
 }
 
@@ -77,7 +80,6 @@ function update(timestamp) {
     }
 
     delta = timestamp - startTime;
-
     //perform update and render only if we enter the next second/gameStamp
     if (delta/1000.0 > gameStamp) {
 
@@ -98,10 +100,10 @@ function render() {
 
     //render hackers and bots
     gameObject.bots.forEach(function (bot) {
-        bot.render(graphics_context);
+        bot.render(graphics_context, boardInfo);
     });
     gameObject.hackers.forEach(function (hacker) {
-        hacker.render(graphics_context);
+        hacker.render(graphics_context, boardInfo);
     });
 
 }
