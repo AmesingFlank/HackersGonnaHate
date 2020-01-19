@@ -137,6 +137,34 @@ const getGameOfLevel = (level) => {
         `;
         return game
     }
+    if (level === 5) {
+        let game = new Game(new Vec2(15, 15), new Vec2(15, 15), MODE_NEXT_MOVE, 5);
+        game.messengers.push(new Messenger(new Vec2(0, 0), new Vec2(0, 1), 5));
+
+        let hackerNum = Math.floor(Math.random() * 5) + 5;
+        for (let i = 0; i < hackerNum; i++) {
+            let x = Math.floor(Math.random() * 16);
+            let y = Math.floor(Math.random() * 16);
+            if (x === 0 && y === 0) {
+                x = 15; y = 0
+            }
+            if (x === 15 && y === 15) {
+                x = 0; y = 15
+            }
+            let dirx = Math.floor(Math.random() * 3) - 1;
+            let diry = Math.floor(Math.random() * 3) - 1;
+            game.hackers.push(new Hacker(new Vec2(x, y), new Vec2(dirx, diry)));
+        }
+
+        game.initialCode = `
+            {
+                getNextMove: (game, me) => {
+                    
+                }
+            }
+        `;
+        return game
+    }
 };
 
 export{getGameOfLevel}
