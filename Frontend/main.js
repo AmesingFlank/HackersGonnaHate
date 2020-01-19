@@ -62,6 +62,23 @@ function initialiseBackground(canvas) {
     boardInfo = {sizeLength: background.getSizeLength()};
 }
 
+function initialiseCodebox(){
+    
+    let textBox = document.getElementById("code");
+    let applyBtn = document.getElementById('apply');
+    let gameResultText = document.getElementById("gameResultText")
+
+    applyBtn.onclick = ()=>{
+        game.started = true
+
+        let code = textBox.value;
+        console.log("reading \n"+code)
+        for(let i = 0;i<game.bots.length;++i){
+            readUserCode(game.bots[i],code)
+        }
+    }
+}
+
 function initialiseGameObject() {
 
     gameObject = new Game(new Vec2(5,5), new Vec2(1,5));

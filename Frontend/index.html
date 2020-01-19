@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 	<head>
-		<title>HTML5 Game Template</title>
+		<title>Hackers Gonna Hate</title>
 		<link rel="stylesheet" href="styles.css">
 		<script type="module" src="../Game/Game.js"></script>
 		<script type="module" src="../Game/Vec2.js"></script>
@@ -16,16 +16,26 @@
 	</head>
 	<body onload="onPageLoaded()">
 
-	<h1>HTML5 Game Template</h1>
+	<h1>Hackers Gonna Hate</h1>
         <p>
-	Bot: <img id="Bot" src="graphics/bot.png" width="32" height="32">
-	TransparentBot: <img id="TransparentBot" src="graphics/botTransparent.png" width="32" height="32">
+	Messenger: <img id="Messenger" src="graphics/bot.png" width="32" height="32">
+	Messenger(Transparent): <img id="TransparentMessenger" src="graphics/botTransparent.png" width="32" height="32">
 	Hacker: <img id="Hacker" src="graphics/hacker.png" width="32" height="32">
 
 	<div class="game_canvas_container">
 		<canvas class="game_canvas" id="game_canvas" tabindex="1" width="1280" height="600">Oh dang! Unable to display game canvas on your browser.</canvas>
 	</div>
 	<div width = "1280" height="600">
+
+		<b id = "gameResultText"> 
+
+		</b>
+
+		<button id="apply">
+			Send Messengers
+		 </button>
+
+
 		<textarea id="code" name="code">
 			Hello
 		</textarea>

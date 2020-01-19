@@ -35,6 +35,7 @@ export class Hacker{
         this.direction = direction
         
         this.getNextMove = (state) => {
+            
             let weights = [0.25, 0.25, 0.25, 0.25] // possibilities of next move in the direction of E, N, W, S respectively
             let random = Math.random()
             let percentile = 0
@@ -68,7 +69,7 @@ export class Hacker{
 }
 
 export class Game{
-    constructor(mapSize,destination,mode,botInvisibilityCount){
+    constructor(mapSize,destination,mode,botInvisibilityCount,initialCode){
         this.bots = []
         this.hackers = []
         this.mapSize = mapSize
@@ -79,17 +80,54 @@ export class Game{
 
         this.mode = mode
         this.botInvisibilityCount = botInvisibilityCount
+
+        this.shoudBuildNextMovesUsingAllMoves = mode === MODE_ALL_MOVES
+
+        this.initialCode = initialCode
+
+        this.started = false;
+
+    }
+    buildNextMovesUsingAllMoves(){
+        for(let i = 0;i<this.bots.length;++i){
+            let allMoves = []
+            this.bots[i].move = (action) =>{
+                allMoves.push(action)
+            }
+            this.bots[i].getAllMoves(this,this.bots[i]);
+
+
+            let moveID = 0
+
+            this.bots[i].getNextMove = (game) => {
+                let result = allMoves[moveID]
+                moveID += 1
+                return result
+            }
+
+        }
+
+        
     }
     step(){
+        
         let state = this;
-        for(let i = 0;i<this.bots.length;++i){
-            let move = this.bots[i].getNextMove(state)
-            this.applyBotMove(this.bots[i],move)
-            if(this.bots[i].position.equals(this.destination)){
-                this.bots[i].atDestination = true;
-                this.arrivedBots.push(this.bots[i])
+
+        if(this.started){
+            if(this.shoudBuildNextMovesUsingAllMoves){
+                this.buildNextMovesUsingAllMoves();
+                this.shoudBuildNextMovesUsingAllMoves = false;
+            }
+            for(let i = 0;i<this.bots.length;++i){
+                let move = this.bots[i].getNextMove(state)
+                this.applyBotMove(this.bots[i],move)
+                if(this.bots[i].position.equals(this.destination)){
+                    this.bots[i].atDestination = true;
+                    this.arrivedBots.push(this.bots[i])
+                }
             }
         }
+        
 
         for(let i = 0;i<this.hackers.length;++i){
             let move = this.hackers[i].getNextMove(state)
