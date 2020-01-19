@@ -23,7 +23,7 @@ const getGameOfLevel = (level) => {
         game.initialCode = `
             {
                 getAllMoves: (game, me) => {
-                    let i;
+                    let i = 0;
                     // How many steps does the messenger need to move in a specific direction?
                     while (i < ) {
                         me.move({x: , y: });
@@ -85,9 +85,9 @@ const getGameOfLevel = (level) => {
         let game = new Game(new Vec2(10, 10), new Vec2(10, 10), MODE_ALL_MOVES, 5);
         game.messengers.push(new Messenger(new Vec2(0, 0), new Vec2(0, 1), 5));
         game.hackers.push(new Hacker(new Vec2(1, 1), new Vec2(-1, 0)));
-        game.hackers.push(new Hacker(new Vec2(3, 3), new Vec2(-1, 0)));
+        game.hackers.push(new Hacker(new Vec2(3, 3), new Vec2(1, 0)));
         game.hackers.push(new Hacker(new Vec2(5, 5), new Vec2(-1, 0)));
-        game.hackers.push(new Hacker(new Vec2(7, 7), new Vec2(-1, 0)));
+        game.hackers.push(new Hacker(new Vec2(7, 7), new Vec2(1, 0)));
         game.hackers.push(new Hacker(new Vec2(9, 9), new Vec2(-1, 0)));
         for (let hacker of game.hackers) {
             hacker.getNextMove = (state) => {
