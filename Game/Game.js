@@ -15,11 +15,11 @@ export class Bot{
        
     }
 
-    render(context) {
+    render(context, board) {
         if(!this.printer){
             this.printer = new Sprite(document.getElementById("Bot"));
         }
-        this.printer.render(context, this.position, this.direction)
+        this.printer.render(context, this.position, board)
     }
 }
 
@@ -27,7 +27,9 @@ export class Hacker{
     constructor(position, direction ){
         this.position = position
         this.direction = direction
+        
         this.getMextMove = (state) => {
+            
             let weights = [0.25, 0.25, 0.25, 0.25] // possibilities of next move in the direction of E, N, W, S respectively
             let random = Math.random()
             let percentile = 0
@@ -52,11 +54,11 @@ export class Hacker{
         
     }
 
-    render(context) {
+    render(context, board) {
         if(!this.printer){
             this.printer = new Sprite(document.getElementById("Hacker"));
         }
-        this.printer.render(context, this.position, this.direction)
+        this.printer.render(context, this.position, board)
     }
 }
 
