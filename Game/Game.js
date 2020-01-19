@@ -38,6 +38,7 @@ export class Hacker{
         this.direction = direction
         
         this.getNextMove = (state) => {
+            
             let weights = [0.25, 0.25, 0.25, 0.25] // possibilities of next move in the direction of E, N, W, S respectively
             let random = Math.random()
             let percentile = 0
@@ -71,7 +72,7 @@ export class Hacker{
 }
 
 export class Game{
-    constructor(mapSize,destination,mode,messengerInvisibilityCount){
+    constructor(mapSize,destination,mode,messengerInvisibilityCount,initialCode){
         this.messengers = []
         this.hackers = []
         this.mapSize = mapSize
@@ -82,17 +83,57 @@ export class Game{
 
         this.mode = mode
         this.messengerInvisibilityCount = messengerInvisibilityCount
+
+        this.shoudBuildNextMovesUsingAllMoves = mode === MODE_ALL_MOVES
+
+        this.initialCode = initialCode
+
+        this.started = false;
+
+    }
+    buildNextMovesUsingAllMoves(){
+        for(let i = 0;i<this.messengers.length;++i){
+            let allMoves = []
+            this.messengers[i].move = (action) =>{
+                allMoves.push(action)
+            }
+            this.messengers[i].getAllMoves(this,this.messengers[i]);
+
+
+            let moveID = 0
+
+            this.messengers[i].getNextMove = (game) => {
+                let result = allMoves[moveID]
+                moveID += 1
+                return result
+            }
+
+        }
+
+        
     }
     step(){
+        
         let state = this;
-        for(let i = 0; i<this.messengers.length; ++i){
-            let move = this.messengers[i].getNextMove(state)
-            this.applyMessengerMove(this.messengers[i],move)
-            if(this.messengers[i].position.equals(this.destination)){
-                this.messengers[i].atDestination = true;
-                this.arrivedMessengers.push(this.messengers[i])
+
+        if(this.started){
+            if(this.shoudBuildNextMovesUsingAllMoves){
+                this.buildNextMovesUsingAllMoves();
+                this.shoudBuildNextMovesUsingAllMoves = false;
+            }
+            for(let i = 0;i<this.messengers.length;++i){
+                if(this.messengers[i].dead || this.messengers[i].atDestination){
+                    continue;
+                }
+                let move = this.messengers[i].getNextMove(state)
+                this.applyMessengerMove(this.messengers[i],move)
+                if(this.messengers[i].position.equals(this.destination)){
+                    this.messengers[i].atDestination = true;
+                    this.arrivedMessengers.push(this.messengers[i])
+                }
             }
         }
+        
 
         for(let i = 0;i<this.hackers.length;++i){
             let move = this.hackers[i].getNextMove(state)
