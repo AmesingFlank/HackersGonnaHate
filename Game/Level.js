@@ -6,8 +6,7 @@ const getGameOfLevel = (level) => {
     if (level === 0) {
         let game = new Game(new Vec2(2,2), new Vec2(1,2), MODE_ALL_MOVES,5);
         game.messengers.push(new Messenger(new Vec2(1,0), new Vec2(0,1),5));
-        game.initialCode =
-`
+        game.initialCode = `
 {
     // How should the messenger move to where it should be?
     getAllMoves: (game, me) => {
@@ -17,8 +16,7 @@ const getGameOfLevel = (level) => {
 }
 `;
         game.title = "JavaScript 101 - Hellow World";
-        game.description =
-`
+        game.description = `
 Welcome to Hackers Gonna Hate! 
 In this game, you will assist our lovely little messenger to go across a dangerous network filled with malicious softwares.
 You will be able to guide our messenger with their language - JavaScript.
@@ -30,8 +28,7 @@ Hopefully after playing these introductory games, you will converse with our mes
     if (level === 1) {
         let game = new Game(new Vec2(10,1), new Vec2(10,0), MODE_ALL_MOVES,5);
         game.messengers.push(new Messenger(new Vec2(0,0), new Vec2(0,1),5));
-        game.initialCode =
-`
+        game.initialCode = `
 {
     getAllMoves: (game, me) => {
         let i = 0;
@@ -44,21 +41,12 @@ Hopefully after playing these introductory games, you will converse with our mes
 }
 `;
         game.title = "JavaScript 101 - while loop";
-        game.description =
-`
-The structure of while loop is as follows:
-while (condition) {
-    action
-}
-The action is only executed when the condition holds. 
-`;
         return game
     }
     if (level === 2) {
         let game = new Game(new Vec2(1,10), new Vec2(0,10), MODE_ALL_MOVES,5);
         game.messengers.push(new Messenger(new Vec2(0,0), new Vec2(0,1),5));
-        game.initialCode =
-`
+        game.initialCode = `
 {
     getAllMoves: (game, me) => {
         // How many steps does the messenger need to move in a specific direction?
@@ -84,8 +72,7 @@ The action is only executed when the condition holds.
             }
         };
         game.hackers.push(hacker);
-        game.initialCode =
-`
+        game.initialCode = `
 {
     getNextMove: (game, me) => {
         let hacker = game.hackers[0];
@@ -122,8 +109,7 @@ The action is only executed when the condition holds.
                 }
             }
         }
-        game.initialCode =
-`
+        game.initialCode = `
 {
     getNextMove: (game, me) => {
         // More hackers are patrolling on their respective rows!
@@ -179,8 +165,7 @@ The action is only executed when the condition holds.
             game.hackers.push(new Hacker(new Vec2(x, y), new Vec2(dirx, diry)));
         }
 
-        game.initialCode =
-`
+        game.initialCode = `
 {
     getNextMove: (game, me) => {
         
