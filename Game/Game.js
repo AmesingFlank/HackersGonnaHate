@@ -90,7 +90,7 @@ export class Game{
     buildNextMovesUsingAllMoves(){
         for(let i = 0;i<this.messengers.length;++i){
             let allMoves = []
-            this.messengers[i].move = (action) =>{
+            this.messengers[i].move = (action) => {
                 allMoves.push(action)
             }
             this.messengers[i].getAllMoves(this,this.messengers[i]);
