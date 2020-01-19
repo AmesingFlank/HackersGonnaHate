@@ -21,11 +21,11 @@ export class Bot{
         }
     }
 
-    render(context) {
+    render(context, board) {
         if(!this.printer){
             this.printer = new Sprite(document.getElementById("Bot"));
         }
-        this.printer.render(context, this.position, this.direction)
+        this.printer.render(context, this.position, board)
     }
 }
 
@@ -34,6 +34,7 @@ export class Hacker{
         this.position = position
         this.direction = direction
         this.nextMove = (state) => {
+            // return new Action(new Vec2(0,0), false)
             let weights = [0.25, 0.25, 0.25, 0.25] // possibilities of next move in the direction of E, N, W, S respectively
             let random = Math.random()
             let percentile = 0
@@ -58,11 +59,11 @@ export class Hacker{
         
     }
 
-    render(context) {
+    render(context, board) {
         if(!this.printer){
             this.printer = new Sprite(document.getElementById("Hacker"));
         }
-        this.printer.render(context, this.position, this.direction)
+        this.printer.render(context, this.position, board)
     }
 }
 
@@ -115,16 +116,8 @@ export class Game{
                 if(bot.dead || bot.atDestination){
                     continue;
                 }
-                if (hacker.direction.x === -1 && hacker.direction.y === 0 && hacker.position.x === bot.position.x && hacker.position.y >= bot.position.y) {
-                    bot.dead = true
-                }
-                if (hacker.direction.x === 1 && hacker.direction.y === 0 && hacker.position.x === bot.position.x && hacker.position.y <= bot.position.y) {
-                    bot.dead = true
-                }
-                if (hacker.direction.x === 0 && hacker.direction.y === 1 && hacker.position.y === bot.position.y && hacker.position.x <= bot.position.x) {
-                    bot.dead = true
-                }
-                if (hacker.direction.x === 0 && hacker.direction.y === -1 && hacker.position.y === bot.position.y && hacker.position.x >= bot.position.x) {
+                // Kill bot if the distance between hacker and bot <= 1
+                if (Math.max(Math.abs(hacker.position.x - bot.position.x), Math.abs(hacker.position.y - bot.position.y)) <= 1) {
                     bot.dead = true
                 }
                 if(bot.dead){

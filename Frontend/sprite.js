@@ -34,22 +34,8 @@ class Sprite{
     }
 
 
-    render(context, position, direction) {
-        //console.log("sprite render");
-        let rotate;
-        if(direction.x == 0) {
-            if(direction.y > 0){
-                rotate = Math.PI / 2;
-            }
-            else { rotate = - Math.PI / 2};
-        }
-        else{
-            if(direction.x > 0){
-                rotate = 0;
-            }
-            else {rotate = Math.PI};
-        }
-        context.drawImage(this._image, position.x, position.y, 1, rotate);
+    render(context, position, board) {
+        context.drawImage(this._image, board.padding + (position.x) * board.sizeLength - 16, board.padding + (position.y) * board.sizeLength - 16, 32, 32);
     }
 }
 
