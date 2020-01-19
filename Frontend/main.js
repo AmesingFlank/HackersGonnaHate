@@ -46,7 +46,7 @@ window.onPageLoaded = onPageLoaded
 const editor = CodeMirror.fromTextArea(document.getElementById("code"), {
     mode: "javascript"
 });
-editor.setSize(1295, 500);
+editor.setSize(400, 650);
 
 //canvas is an HTML block element; it's the canvas that we render on
 function initialiseCanvas(canvas_name) {

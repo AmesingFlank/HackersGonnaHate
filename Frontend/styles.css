@@ -21,5 +21,40 @@ p {
 }
 
 .game_canvas {
-  border: solid 1px white;
+    /*border: solid 1px white;*/
+    float: left;
 }
+
+#code_pad {
+  width: 400px;
+  height: 700px;
+  float: left;
+  border-left: solid 6px #DDDDDD;
+}
+
+#code_title_container {
+  width: 400px;
+  height: 50px;
+}
+
+#code_title {
+  font-style: italic;
+  font-weight: bold;
+  font-size: 24px;
+  font-family: Verdana, Geneva, sans-serif;
+  float: left;
+  text-align: center;
+}
+
+#button_wrapper {
+  text-align: center;
+  float: left;
+}
+
+#code_button {
+  width: 80px;
+  height: 40px;
+  /* padding: 15px; */
+}
+
+
