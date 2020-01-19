@@ -28,6 +28,8 @@ var graphics_context = null;
 
 var boardInfo;
 
+let currentLevel = 0
+
 //entry point
 function onPageLoaded() {
 
@@ -97,6 +99,19 @@ function initialiseCodebox(){
     title.innerHTML = gameObject.title;
     console.log(gameObject.description)
     description.innerHTML = gameObject.description
+
+
+    let resetBtn =  document.getElementById('reset');
+    resetBtn.onclick = ()=>{
+        onPageLoaded();
+
+    }
+
+
+    let levelSelect = document.getElementById("levelSelect");
+    levelSelect.onselect = ()=>{
+        console.log(levelSelect.getValue())
+    }
 }
 
 function initialiseGameObject() {
@@ -105,7 +120,7 @@ function initialiseGameObject() {
     gameObject.messengers.push(new Messenger(new Vec2(1,1), new Vec2(0,1),5));
     gameObject.hackers.push(new Hacker(new Vec2(2,2),new Vec2(0,0)));
 */
-    gameObject = getGameOfLevel(5)
+    gameObject = getGameOfLevel(currentLevel)
 }
 
 function startGameLoop() {
