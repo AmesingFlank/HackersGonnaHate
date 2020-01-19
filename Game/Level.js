@@ -9,7 +9,7 @@ const getGameOfLevel = (level) => {
         game.initialCode = `
             {
                 // How should the messenger move to where it should be?
-                getAllMoves(game, me) => {
+                getAllMoves: (game, me) => {
                     me.move({x: , y:  });
                     me.move({x: , y:  })
                 }
@@ -22,7 +22,7 @@ const getGameOfLevel = (level) => {
         game.messengers.push(new Messenger(new Vec2(0,0), new Vec2(0,1),5));
         game.initialCode = `
             {
-                getAllMoves(game, me) => {
+                getAllMoves: (game, me) => {
                     let i;
                     // How many steps does the messenger need to move in a specific direction?
                     while (i < ) {
@@ -39,7 +39,7 @@ const getGameOfLevel = (level) => {
         game.messengers.push(new Messenger(new Vec2(0,0), new Vec2(0,1),5));
         game.initialCode = `
             {
-                getAllMoves(game, me) => {
+                getAllMoves: (game, me) => {
                     // How many steps does the messenger need to move in a specific direction?
                     for (let i = 0; i <  ; i++) {
                         me.move({x: , y:  })
@@ -65,7 +65,7 @@ const getGameOfLevel = (level) => {
         game.hackers.push(hacker);
         game.initialCode = `
             {
-                getAllMoves(game, me) => {
+                getAllMoves: (game, me) => {
                     let hacker = game.hackers[0];
                     // A malicious hacker is looking for its prey on its row!
                     // In what situation is it definitely safe for the messenger to move forward?
@@ -102,13 +102,15 @@ const getGameOfLevel = (level) => {
         }
         game.initialCode = `
             {
-                getAllMoves(game, me) => {
+                getAllMoves: (game, me) => {
                     let hacker = game.hackers[0];
                     // More hackers are patrolling on their respective rows!
                     // Our messenger is actually more capable than you might have thought,
                     // you can make the messenger invisible to evade attacks - however, only 5 times.
-                    for (let i = 0; i <  ; i++) {
-                        me.move({x: , y:  })
+                    for (let i = 0; i < 10 ; i++) {
+                        if () {
+                            me.move({x: 0, y: 0})
+                        }
                     }
                 }
             }
