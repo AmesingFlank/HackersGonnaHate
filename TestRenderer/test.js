@@ -1,4 +1,8 @@
-import {Game,Bot,Hacker} from "../Game/Game.js"
+<<<<<<< HEAD
+import {Game,Bot,Hacker, MODE_NEXT_MOVE} from "../Game/Game.js"
+=======
+import {Game,Messenger,Hacker} from "../Game/Game.js"
+>>>>>>> 8376017768ec884bda9c859ea79eac5bb84136f8
 import {Vec2} from "../Game/Vec2.js"
 import {ShaderProgram} from "./ShaderProgram.js"
 import {readUserCode} from "../Game/ReadUserCode.js"
@@ -12,34 +16,29 @@ let shader;
 let frameID = 0;
 
 
-let game = getGameOfLevel(1)
+let game = getGameOfLevel(0)
 
 /*
-let game = new Game(new Vec2(5,5), new Vec2(1,5));
+let game = new Game(new Vec2(5,5), new Vec2(1,5),MODE_NEXT_MOVE,50);
 game.bots.push(new Bot(new Vec2(1,1), new Vec2(0,1),5));
 game.hackers.push(new Hacker(new Vec2(3,3),new Vec2(0,1)));
 
-game.hackers.push(new Hacker(new Vec2(1,0),new Vec2(0,1)));
-game.hackers.push(new Hacker(new Vec2(0,1),new Vec2(0,1)));
-game.hackers.push(new Hacker(new Vec2(1,3),new Vec2(0,1)));
-game.hackers.push(new Hacker(new Vec2(2,1),new Vec2(0,1)));
 */
 
 
 
-let gameStarted = false
 
 let textBox = document.getElementById("codeInput");
 let applyBtn = document.getElementById('apply');
 let gameResultText = document.getElementById("gameResultText")
 
 applyBtn.onclick = ()=>{
-    gameStarted = true
+    game.started = true
 
     let code = textBox.value;
     console.log("reading \n"+code)
-    for(let i = 0;i<game.bots.length;++i){
-        readUserCode(game.bots[i],code)
+    for(let i = 0; i<game.messengers.length; ++i){
+        readUserCode(game.messengers[i],code)
     }
 }
 
@@ -210,15 +209,15 @@ const renderFrame = ()=>{
     if(botCountLocation === -1){
         console.log("bot count loc wrong")
     }
-    gl.uniform1i(botCountLocation,game.bots.length);
+    gl.uniform1i(botCountLocation,game.messengers.length);
 
-    for(let i = 0;i<game.bots.length;++i){
+    for(let i = 0; i<game.messengers.length; ++i){
         let name = "bots[" + i+"]";
         let loc = gl.getUniformLocation(shader.program,name);
         if(mapSizeLocation === -1){
             console.log("bot loc wrong "+i);
         }
-        gl.uniform2fv(loc,[game.bots[i].position.x ,game.bots[i].position.y]);
+        gl.uniform2fv(loc,[game.messengers[i].position.x ,game.messengers[i].position.y]);
 
     }
 
@@ -250,25 +249,25 @@ const renderFrame = ()=>{
 
 let onNewFrame = ()=>{
     
-    if(gameStarted)
-        frameID ++ ;
+
+    frameID ++ ;
     if(frameID===60){
         frameID = 0;
         game.step();
-        
     }
         
     renderFrame();
     
-    requestAnimationFrame(onNewFrame)
+    
     if(game.killedBots.length == game.bots.length){
         gameResultText.innerHTML = "you Lost :(("
         gameStarted = false
     }
-    if(game.arrivedBots.length == game.bots.length){
+    else if(game.arrivedBots.length == game.bots.length){
         gameResultText.innerHTML = "you won ! "
         gameStarted = false
     }
+    else requestAnimationFrame(onNewFrame)
 }
 
 

@@ -1,12 +1,12 @@
 
 
 body {
-    background-color: #2D364C;
+    background-color: #DDDDDD;
 }
 
 
 h1 {
-    color: white;
+    color: black;
 }
 
 
@@ -17,7 +17,7 @@ p {
 .game_canvas_container {
 	display: inline-block;
 	padding: 6px;
-	background-color:#DDDDDD;
+	background-color:#CCCCCC;
 }
 
 .game_canvas {

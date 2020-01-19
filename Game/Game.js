@@ -4,7 +4,7 @@ import {Sprite} from '../Frontend/sprite.js'
 export const MODE_NEXT_MOVE = 111
 export const MODE_ALL_MOVES = 222
 
-export class Bot{
+export class Messenger{
     constructor(position, direction, invisibilityCount){
         this.position = position
         this.direction = direction
@@ -17,13 +17,12 @@ export class Bot{
 
     render(context, board) {
         if(!this.printers){
-            this.printers = [new Sprite(document.getElementById("Bot")), new Sprite(document.getElementById("TransparentBot"))];
+            this.printers = [new Sprite(document.getElementById("Messenger")), new Sprite(document.getElementById("TransparentMessenger"))];
         }
         if(!this.isInvisible) {
             this.printers[0].render(context, this.position, board);
         }
         else {
-            console.log("hi")
             this.printers[1].render(context, this.position, board);
         }
     }
@@ -35,6 +34,7 @@ export class Hacker{
         this.direction = direction
         
         this.getNextMove = (state) => {
+            
             let weights = [0.25, 0.25, 0.25, 0.25] // possibilities of next move in the direction of E, N, W, S respectively
             let random = Math.random()
             let percentile = 0
@@ -68,44 +68,84 @@ export class Hacker{
 }
 
 export class Game{
-    constructor(mapSize,destination,mode,botInvisibilityCount){
-        this.bots = []
+    constructor(mapSize,destination,mode,messengerInvisibilityCount,initialCode){
+        this.messengers = []
         this.hackers = []
         this.mapSize = mapSize
         this.destination = destination
 
-        this.arrivedBots = []
-        this.killedBots = []
+        this.arrivedMessengers = []
+        this.killedMessengers = []
 
         this.mode = mode
-        this.botInvisibilityCount = botInvisibilityCount
+        this.messengerInvisibilityCount = messengerInvisibilityCount
+
+        this.shoudBuildNextMovesUsingAllMoves = mode === MODE_ALL_MOVES
+
+        this.initialCode = initialCode
+
+        this.started = false;
+
+    }
+    buildNextMovesUsingAllMoves(){
+        for(let i = 0;i<this.messengers.length;++i){
+            let allMoves = []
+            this.messengers[i].move = (action) =>{
+                allMoves.push(action)
+            }
+            this.messengers[i].getAllMoves(this,this.messengers[i]);
+
+
+            let moveID = 0
+
+            this.messengers[i].getNextMove = (game) => {
+                let result = allMoves[moveID]
+                moveID += 1
+                return result
+            }
+
+        }
+
+        
     }
     step(){
+        
         let state = this;
-        for(let i = 0;i<this.bots.length;++i){
-            let move = this.bots[i].getNextMove(state)
-            this.applyBotMove(this.bots[i],move)
-            if(this.bots[i].position.equals(this.destination)){
-                this.bots[i].atDestination = true;
-                this.arrivedBots.push(this.bots[i])
+
+        if(this.started){
+            if(this.shoudBuildNextMovesUsingAllMoves){
+                this.buildNextMovesUsingAllMoves();
+                this.shoudBuildNextMovesUsingAllMoves = false;
+            }
+            for(let i = 0;i<this.messengers.length;++i){
+                if(this.messengers[i].dead || this.messengers[i].atDestination){
+                    continue;
+                }
+                let move = this.messengers[i].getNextMove(state)
+                this.applyMessengerMove(this.messengers[i],move)
+                if(this.messengers[i].position.equals(this.destination)){
+                    this.messengers[i].atDestination = true;
+                    this.arrivedMessengers.push(this.messengers[i])
+                }
             }
         }
+        
 
         for(let i = 0;i<this.hackers.length;++i){
             let move = this.hackers[i].getNextMove(state)
-            this.applyBotMove(this.hackers[i],move)
+            this.applyMessengerMove(this.hackers[i],move)
 
         }
         this.checkKilling();
     }
-    applyBotMove(bot,move){
-        bot.position.x += move.x;
-        bot.position.y += move.y;
-        bot.position.x = Math.max(0,Math.min(bot.position.x,this.mapSize.x))
-        bot.position.y = Math.max(0,Math.min(bot.position.y,this.mapSize.y))
-        bot.direction.x = move.x
-        bot.direction.y = move.y
-        bot.isInvisible = move.goInvisible
+    applyMessengerMove(messenger, move){
+        messenger.position.x += move.x;
+        messenger.position.y += move.y;
+        messenger.position.x = Math.max(0,Math.min(messenger.position.x,this.mapSize.x))
+        messenger.position.y = Math.max(0,Math.min(messenger.position.y,this.mapSize.y))
+        messenger.direction.x = move.x
+        messenger.direction.y = move.y
+        messenger.isInvisible = move.goInvisible
     }
     applyHackerMove(hacker,move){
         hacker.position.x += move.x;
@@ -117,16 +157,16 @@ export class Game{
     }
     checkKilling(){
         for (let hacker of this.hackers) {
-            for (let bot of this.bots) {
-                if(bot.dead || bot.atDestination || bot.isInvisible){
+            for (let messenger of this.messengers) {
+                if(messenger.dead || messenger.atDestination || messenger.isInvisible){
                     continue;
                 }
-                // Kill bot if the distance between hacker and bot <= 1
-                if (hacker.position.x === bot.position.x && hacker.position.y === bot.position.y) {
-                    bot.dead = true
+                // Kill messenger if the distance between hacker and messenger <= 1
+                if (hacker.position.x === messenger.position.x && hacker.position.y === messenger.position.y) {
+                    messenger.dead = true
                 }
-                if(bot.dead){
-                    this.killedBots.push(bot)
+                if(messenger.dead){
+                    this.killedMessengers.push(messenger)
                 }
             }
         }
