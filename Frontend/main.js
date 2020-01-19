@@ -105,7 +105,7 @@ function initialiseGameObject() {
     gameObject.messengers.push(new Messenger(new Vec2(1,1), new Vec2(0,1),5));
     gameObject.hackers.push(new Hacker(new Vec2(2,2),new Vec2(0,0)));
 */
-    gameObject = getGameOfLevel(0)
+    gameObject = getGameOfLevel(5)
 }
 
 function startGameLoop() {
@@ -134,7 +134,7 @@ function update(timestamp) {
         gameStamp++;
     }
 
-    if(gameObject.killedMessengers.length == gameObject.messengers.length){
+    if(gameObject.killedMessengers.length > 0){
         gameResultText.innerHTML = "you Lost :(("
         gameObject.started = false
     }

@@ -41,6 +41,29 @@ Hopefully after playing these introductory games, you will converse with our mes
 }
 `;
         game.title = "JavaScript 101 - while loop";
+        get.description = `
+A while loop look like this:
+
+while (condition) {
+    action
+}
+
+If the condition holds, then the action will be triggered;
+and the action will be triggered until the condition has broken.
+A very common implementation of while loop works like this:
+
+var i = 1; var sum = 0
+while (i <= 3) {
+    sum = sum + i
+    i = i + 1
+}
+
+Take a moment to think about what the above code is doing?
+.
+.
+.
+That's right, the code is trying to sum up the numbers 1, 2 and 3!
+`;
         return game
     }
     if (level === 2) {
@@ -55,6 +78,16 @@ Hopefully after playing these introductory games, you will converse with our mes
         }
     }
 }
+`;
+        game.title = "JavaScript 101 - foor loop";
+        get.description = `
+A foor loop generally has one of the following two forms:
+
+for (let i = 0; i < length; i++) {
+    action
+}
+
+This form is alike the while loop that we have introduced, except 
 `;
         return game
     }
