@@ -42,27 +42,9 @@ Hopefully after playing these introductory games, you will converse with our mes
 `;
         game.title = "JavaScript 101 - while loop";
         game.description = `
-A while loop look like this:
-
-while (condition) {
-    action
-}
-
+A while loop look like this: while (condition) {action}. 
 If the condition holds, then the action will be triggered;
 and the action will be triggered until the condition has broken.
-A very common implementation of while loop works like this:
-
-    var i = 1; var sum = 0
-    while (i <= 3) {
-        sum = sum + i
-        i = i + 1
-    }
-
-Take a moment to think about what the above code is doing?
-.
-.
-.
-That's right, the code is trying to sum up the numbers 1, 2 and 3!
 `;
         return game
     }
@@ -79,26 +61,15 @@ That's right, the code is trying to sum up the numbers 1, 2 and 3!
     }
 }
 `;
-        game.title = "JavaScript 101 - foor loop";
+        game.title = "JavaScript 101 - for loop";
         game.description = `
-A for loop generally has one of the following two forms:
-
-    for (var i = 0; i < length; i++) {
-        action
-    }
-
+A for loop generally has one of the following two forms. 
+The first form: for (var i = 0; i < length; i++) {action}
 This is equivalent to the while loop that we have introduced previously, except that we have piece together the construction of variable i, 
 the condition it ought to hold and its increment within one pair of parentheses. 
-
-The other form looks like this:
-
-    for (var object of objects) {
-        action
-    }
-
+The other form looks like this: for (var object of objects) {action}
 Here, "objects" is an array (we will explain this term in more details afterwards!) containing some objects, as the name implies.
-Then for every object in this array, we will carry out the action.
-
+Then for every object in this array, we will carry out the action. 
 Now, let's try out our new friend, for loop!
 `;
         return game
