@@ -12,7 +12,7 @@ export class Bot{
         this.isInvisible = true;
         this.dead = false;
         this.atDestination = false
-       
+        this.getNextMove = (state) => {return {x:0,y:0,goInvisible:false}}
     }
 
     render(context, board) {
