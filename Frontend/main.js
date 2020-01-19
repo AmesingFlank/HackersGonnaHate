@@ -82,7 +82,7 @@ function update(timestamp) {
     delta = timestamp - startTime;
     //perform update and render only if we enter the next second/gameStamp
     if (delta/1000.0 > gameStamp) {
-
+        
         //update the game state and render
         gameObject.step();
         render();
