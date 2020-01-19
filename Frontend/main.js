@@ -63,7 +63,7 @@ function initialiseCanvas(canvas_name) {
 function initialiseBackground(canvas) {
 
     background = new Background(1280, 600, gameObject.mapSize, gameObject.destination);
-    boardInfo = {sizeLength: background.getSizeLength(), mapSize: gameObject.mapSize};
+    boardInfo = {sideLength: background.getSideLength(), mapSize: gameObject.mapSize, shift: background._shift};
 }
 
 function initialiseCodebox(){
