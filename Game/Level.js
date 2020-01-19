@@ -113,7 +113,7 @@ const getGameOfLevel = (level) => {
                     // Complete it by accessing the hackers array.
                     me.dangerous = () => {
                         for (    hacker    game.hackers) {
-                            return hacker.position.x === bot.position.x + 1
+                            return hacker.position.y === bot.position.y + 1
                         }
                     }
                     
