@@ -23,7 +23,6 @@ export class Messenger{
             this.printers[0].render(context, this.position, board);
         }
         else {
-            console.log("hi")
             this.printers[1].render(context, this.position, board);
         }
     }
