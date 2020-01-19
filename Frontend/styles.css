@@ -1,12 +1,14 @@
 
 
 body {
-    background-color: #DDDDDD;
+    background-color: #47599F;
 }
 
 
 h1 {
-    color: black;
+    color: white;
+    font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+    font-size: 36px;
 }
 
 
@@ -17,11 +19,20 @@ p {
 .game_canvas_container {
 	display: inline-block;
 	padding: 6px;
-	background-color:#CCCCCC;
+	background-color:#DDDDDD;
 }
 
-.game_canvas {
+/* .game_canvas {
     /*border: solid 1px white;*/
+    /* float: left; */
+/* } */ 
+
+.logo_text {
+    font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+    font-size: 22px;
+    padding-left: 20px;
+    padding-right: 10px;
+    padding-top: 2px;
     float: left;
 }
 
@@ -40,21 +51,24 @@ p {
 #code_title {
   font-style: italic;
   font-weight: bold;
-  font-size: 24px;
-  font-family: Verdana, Geneva, sans-serif;
+  font-size: 20px;
+  font-family: system-ui;
   float: left;
-  text-align: center;
+  padding-top: 10px;
+  padding-left: 10px;
 }
 
 #button_wrapper {
   text-align: center;
   float: left;
+  padding-left: 15px;
+  padding-top: 13px;
 }
 
-#code_button {
-  width: 80px;
-  height: 40px;
-  /* padding: 15px; */
+.button {
+  font-size: 12px;
+  border-radius: 6px;
 }
+
 
 
