@@ -82,7 +82,7 @@ const getGameOfLevel = (level) => {
         return game
     }
     if (level === 4) {
-        let game = new Game(new Vec2(10, 10), new Vec2(10, 10), MODE_ALL_MOVES, 5);
+        let game = new Game(new Vec2(10, 10), new Vec2(10, 10), MODE_NEXT_MOVE, 5);
         game.messengers.push(new Messenger(new Vec2(0, 0), new Vec2(0, 1), 5));
         game.hackers.push(new Hacker(new Vec2(1, 1), new Vec2(-1, 0)));
         game.hackers.push(new Hacker(new Vec2(3, 3), new Vec2(1, 0)));
@@ -93,7 +93,7 @@ const getGameOfLevel = (level) => {
             hacker.getNextMove = (state) => {
                 if (hacker.position.x === 0 && hacker.direction.x === -1) {
                     return {x: 1, y: 0, goInvisible: false}
-                } else if (hacker.position.x === 4 && hacker.direction.x === 1) {
+                } else if (hacker.position.x === 10 && hacker.direction.x === 1) {
                     return {x: -1, y: 0, goInvisible: false}
                 } else {
                     return {x: hacker.direction.x, y: 0, goInvisible: false}
@@ -102,7 +102,7 @@ const getGameOfLevel = (level) => {
         }
         game.initialCode = `
             {
-                getAllMoves: (game, me) => {
+                getNextMove: (game, me) => {
                     // More hackers are patrolling on their respective rows!
                     // Our messenger is actually more capable than you might have thought,
                     // you can make the messenger invisible to evade attacks. 
@@ -118,15 +118,19 @@ const getGameOfLevel = (level) => {
                     }
                     
                     let hacker = game.hackers[0];
-                    for (let i = 0; i < 10 ; i++) {
-                        if (me.dangerous) {
+                    if (me.position.y < 10) {
+                        let shouldGoInvisible;
+                        if (me.dangerous()) {
                             // Change the visibility here!
-                            me.goInvisible = 
-                        };
-                        me.move({x: 0, y: 1})
-                    };
-                    for (let i = 0; i < 10 ; i++) {
-                        me.move({x: 1, y: 0})
+                            shouldGoInvisible = 
+                        }
+                        else{
+                            shouldGoInvisible = 
+                        }
+                        return {x: , y: ,goInvisible:shouldGoInvisible}
+                    }
+                    else {
+                        return {x: , y: ,goInvisible:shouldGoInvisible}
                     }
                 }
             }
