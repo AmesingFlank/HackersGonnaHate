@@ -36,8 +36,8 @@ class Sprite{
 
     render(context, position, board) {
         let temp = board.sideLength;
-        console.log(temp / 2+ (position.x) * temp - temp * 0.4 + board.shift.x)
-        console.log(position)
+        //console.log(temp / 2+ (position.x) * temp - temp * 0.4 + board.shift.x)
+        //console.log(position)
         context.drawImage(this._image, board.shift.x + board.sideLength * position.x - temp * 0.4, board.shift.y + board.sideLength * (board.mapSize.y - position.y) - temp * 0.4, temp * 0.8, temp * 0.8);
     }
 }

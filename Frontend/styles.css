@@ -22,10 +22,10 @@ p {
 	background-color:#DDDDDD;
 }
 
-/* .game_canvas {
+.game_canvas {
     /*border: solid 1px white;*/
-    /* float: left; */
-/* } */ 
+    float: left;
+}
 
 .logo_text {
     font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
@@ -36,26 +36,38 @@ p {
     float: left;
 }
 
+#level_text {
+    font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+
+}
+
+#level_description {
+   font-family: system-ui;
+   font-size: 14px;
+   border: solid 2px black;
+}
+
 #code_pad {
-  width: 400px;
+  width: 550px;
   height: 700px;
   float: left;
   border-left: solid 6px #DDDDDD;
 }
 
 #code_title_container {
-  width: 400px;
+  width: 550px;
   height: 50px;
 }
 
 #code_title {
   font-style: italic;
   font-weight: bold;
-  font-size: 20px;
+  font-size: 22px;
   font-family: system-ui;
   float: left;
   padding-top: 10px;
-  padding-left: 10px;
+  padding-left: 15px;
+  padding-right: 15px;
 }
 
 #button_wrapper {
@@ -63,11 +75,14 @@ p {
   float: left;
   padding-left: 15px;
   padding-top: 13px;
+  padding-bottom: 10px;
 }
 
 .button {
   font-size: 12px;
   border-radius: 6px;
+  padding-left: 30px;
+  padding-right: 30px;
 }
 
 
