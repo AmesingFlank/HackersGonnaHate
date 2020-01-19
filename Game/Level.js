@@ -146,9 +146,13 @@ Now, let us shapen our new weapon by practice.
         // Your messenger will be put into a dangerous position if that happens.
         // Complete it by accessing the hackers array.
         me.dangerous = () => {
+            let isDangerous = false
             for (    hacker    game.hackers) {
-                return hacker.position.y === me.position.y + 1
+                if (hacker.position.y === me.position.y + 1) {
+                    isDangerous = isDangerous || true
+                }
             }
+            return isDangerous
         }
         
         let hacker = game.hackers[0];
