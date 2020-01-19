@@ -93,7 +93,7 @@ function initialiseGameObject() {
     gameObject.messengers.push(new Messenger(new Vec2(1,1), new Vec2(0,1),5));
     gameObject.hackers.push(new Hacker(new Vec2(2,2),new Vec2(0,0)));
 */
-    gameObject = getGameOfLevel(1)
+    gameObject = getGameOfLevel(4)
 
 }
 
