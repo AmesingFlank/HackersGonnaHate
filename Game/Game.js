@@ -93,11 +93,17 @@ export class Game{
     }
     buildNextMovesUsingAllMoves(){
         for(let i = 0;i<this.messengers.length;++i){
+<<<<<<< HEAD
             this.precomputedMoves.push([])
             this.currentMoveIDs.push(0)
 
             this.messengers[i].move = (action) =>{
                 this.precomputedMoves[i].push(action)
+=======
+            let allMoves = []
+            this.messengers[i].move = (action) => {
+                allMoves.push(action)
+>>>>>>> c2b959b8004c4deacf1b89875be28573894c9475
             }
             this.messengers[i].getAllMoves(this,this.messengers[i]);
 
