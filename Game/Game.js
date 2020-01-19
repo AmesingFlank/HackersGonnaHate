@@ -17,11 +17,7 @@ export class Messenger{
 
     render(context, board) {
         if(!this.printers){
-<<<<<<< Updated upstream
             this.printers = [new Sprite(document.getElementById("Messenger")), new Sprite(document.getElementById("TransparentMessenger"))];
-=======
-            this.printers = [new Sprite(document.getElementById("Packet")), new Sprite(document.getElementById("TransparentPacket"))];
->>>>>>> Stashed changes
         }
         if(!this.isInvisible) {
             this.printers[0].render(context, this.position, board);
