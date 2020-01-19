@@ -84,6 +84,13 @@ function initialiseCodebox(){
     }
 
     editor.setValue(gameObject.initialCode);
+
+
+    let title = document.getElementById("level_text");
+    let description = document.getElementById("level_description");
+
+    title.innerHTML = gameObject.title;
+    description.innerHTML = document.description
 }
 
 function initialiseGameObject() {
